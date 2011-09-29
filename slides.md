@@ -1,4 +1,4 @@
-% Haskell Bits
+% Haskell Amuse Bouche
 % Mark Lentczner
 % 2011-09-29
 
@@ -32,6 +32,13 @@
 * It's gonna look like crazy-moon language
 
 * Be brave
+
+
+# Wanna play along?
+
+The slides and code are here:
+
+`https://github.com/mtnviewmark/haskell-amuse-bouche`
 
 
 # Something Familiar
@@ -68,13 +75,31 @@ main = readFile "poem" >>= putStr . process
 process t = unlines (sort (lines t))
 ~~~~
 
-Put that in a file named `Part.hs` and then at the shell:
+Put that in a file named `Part1.hs` and then at the shell:
 
 ~~~~ {.bash}
 runhaskell Part1.hs
 ~~~~
 
-# Ignoring the main behind the curtain...
+----
+
+Original poem:
+
+~~~~
+occasional clouds
+one gets a rest
+from moon-viewing
+~~~~
+
+Program output:
+
+~~~~
+from moon-viewing
+occasional clouds
+one gets a rest
+~~~~
+
+# Ignoring the `main` behind the curtain...
  
 ~~~~ {.haskell}
 process t = unlines (sort (lines t))
@@ -180,6 +205,14 @@ indentEachLine' :: String -> String
 indentEachLine' = eachLine indent
 ~~~~
 
+and we get:
+
+~~~~
+    occasional clouds
+    one gets a rest
+    from moon-viewing
+~~~~
+
 # But wait, where's the second argument to `map`?
 
 Think of `map`s type this way:
@@ -200,6 +233,14 @@ yellEachLine :: String -> String
 yellEachLine = eachLine yell
 ~~~~
 
+gives
+
+~~~~
+OCCASIONAL CLOUDS!!!
+ONE GETS A REST!!!
+FROM MOON-VIEWING!!!
+~~~~
+
 # What if we wanted it by words?
 
 ~~~~ {.haskell}
@@ -212,6 +253,10 @@ yellEachWord = eachWord yell
 
 *d'oh!*
 
+~~~~
+OCCASIONAL!!! CLOUDS!!! ONE!!! GETS!!! A!!! REST!!! FROM!!! MOON-VIEWING!!!
+~~~~
+
 # We want by words, by lines...
 
 ~~~~ {.haskell}
@@ -222,6 +267,13 @@ yellEachWordOnEachLine :: String -> String
 yellEachWordOnEachLine = eachWord' yell
 ~~~~
 
+Ah, got it:
+
+~~~~
+OCCASIONAL!!! CLOUDS!!!
+ONE!!! GETS!!! A!!! REST!!!
+FROM!!! MOON-VIEWING!!!
+~~~~
 
 # What bus hit us?
 
@@ -520,6 +572,17 @@ Whew
 * Hoogle
 * `#haskell` on `irc.freenode.org`
 
+# Want a bigger helping?
+
+* Learn You a Haskell for Great Good!
+
+  http://learnyouahaskell.com/
+
+* Real World Haskell
+
+  http://book.realworldhaskell.org/
+
+* Haskell.org
 
 # Thanks
 

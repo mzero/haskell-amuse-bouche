@@ -46,9 +46,9 @@ process' t = (unlines . sort . lines) t
 process'' = unlines . sort . lines
 
 
-poem = "breakfast apple pie\n\
-       \lunch banana yoghurt for\n\
-       \dinner cantaloupe\n"
+poem = "occasional clouds\n\
+       \one gets a rest\n\
+       \from moon-viewing\n"
 
     -- show the poem in ghci with:
     --      > putStr $ poem
