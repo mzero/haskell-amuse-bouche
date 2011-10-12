@@ -1,30 +1,22 @@
 module Part2a where
 
-data List α = Nil
-            | Cons α (List α)
+data List α = EndOfList
+            | Link α (List α)
     deriving Show   -- makes printing out results possible
 
-empty = Nil
-oneWord = Cons "apple" Nil
-twoWords = Cons "banana" (Cons "cantaloupe" Nil)
+empty = EndOfList
+oneWord = Link "apple" EndOfList
+twoWords = Link "banana" (Link "cantaloupe" EndOfList)
 
-mystery1 = Cons "pear" empty
-mystery2 = Cons "peach" oneWord
-mystery3 = Cons "pineapple" mystery3
--- mystery4 = Cons 42 (Cons "apple" Nil) -- won't compile
+mystery1 = Link "pear" empty
+mystery2 = Link "peach" oneWord
+mystery3 = Link "pineapple" mystery3
+-- mystery4 = Link 42 (Link "apple" EndOfList) -- won't compile
 
 dropOne :: List a -> List a
-dropOne (Cons first rest) = rest
-dropOne Nil = Nil
+dropOne (Link first rest) = rest
+dropOne EndOfList = EndOfList
 
 justOne :: List a -> List a
-justOne (Cons a _) = Cons a Nil
-justOne Nil = Nil
-
-firstOne :: List a -> a
-firstOne (Cons a _) = a
-firstOne Nil = error "O Noes!"
-
-maybeFirstOne :: a -> List a -> a
-maybeFirstOne def (Cons first rest) = first
-maybeFirstOne def Nil = def
+justOne (Link a _) = Link a EndOfList
+justOne EndOfList = EndOfList

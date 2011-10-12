@@ -1,6 +1,5 @@
 module Part2d where
 
-
 findAfterStar :: String -> Maybe Char
 findAfterStar (c:d:r) =
   if c == '*' then Just d

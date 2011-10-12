@@ -1,4 +1,4 @@
-module Part3 where
+module Part4 where
 
 runLengthEncode :: Eq a => [a] -> [(a, Int)]
 runLengthEncode [] = []

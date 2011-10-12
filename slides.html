@@ -6,7 +6,9 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Mark Lentczner" />
-  <meta name="date" content="2011-09-29" />
+  <meta name="author" content="" />
+  <meta name="author" content="" />
+  <meta name="date" content="2011-10-14" />
   <title>Haskell Amuse Bouche</title>
   <style type="text/css">
 /*<![CDATA[*/
@@ -444,16 +446,16 @@ var w3c_slidy={ns_pos:(typeof window.pageYOffset!="undefined"),khtml:((navigator
 <div class="slide titlepage">
   <h1 class="title">Haskell Amuse Bouche</h1>
   <p class="author">
-Mark Lentczner
+Mark Lentczner<br/><br/>
   </p>
-  <p class="date">2011-09-29</p>
+  <p class="date">2011-10-14</p>
 </div>
 <div class="slide">
 <h1 id="haskell-is-scary">Haskell is Scary</h1>
 <ul>
 <li>Oh noes! Where's my state?</li>
 <li>Hey, I don't want my program to be lazy!</li>
-<li>Yo, PHP doesn't need no templates or combinators...</li>
+<li>Yo, PHP don't need no templates or combinators...</li>
 <li>Uhm, I thought dynamic languages were better?</li>
 <li>MONADS!</li>
 </ul>
@@ -463,8 +465,8 @@ Mark Lentczner
 <ul>
 <li>Functional</li>
 <li>Lazy</li>
-<li>Higher order Functions</li>
-<li>Static Types</li>
+<li>Higher order functions</li>
+<li>Type inference</li>
 <li>...shhhh: monads.</li>
 </ul>
 </div>
@@ -619,49 +621,31 @@ FROM!!! MOON-VIEWING!!!
 <div class="slide">
 <h1 id="structured-data">Structured data</h1>
 <p>By which I mean lists, of course...</p>
-<pre class="sourceCode"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">List</span> &#945; <span class="fu">=</span> <span class="dt">Nil</span><br />            <span class="fu">|</span> <span class="dt">Cons</span> &#945; (<span class="dt">List</span> &#945;)</code></pre>
+<pre class="sourceCode"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">List</span> &#945; <span class="fu">=</span> <span class="dt">EndOfList</span><br />            <span class="fu">|</span> <span class="dt">Link</span> &#945; (<span class="dt">List</span> &#945;)</code></pre>
 <p>we can make some values of this type:</p>
-<pre class="sourceCode"><code class="sourceCode haskell">empty <span class="fu">=</span> <span class="dt">Nil</span><br />oneWord <span class="fu">=</span> <span class="dt">Cons</span> <span class="st">&quot;apple&quot;</span> <span class="dt">Nil</span><br />twoWords <span class="fu">=</span> <span class="dt">Cons</span> <span class="st">&quot;banana&quot;</span> (<span class="dt">Cons</span> <span class="st">&quot;cantaloupe&quot;</span> <span class="dt">Nil</span>)</code></pre>
+<pre class="sourceCode"><code class="sourceCode haskell">empty <span class="fu">=</span> <span class="dt">EndOfList</span><br />oneWord <span class="fu">=</span> <span class="dt">Link</span> <span class="st">&quot;apple&quot;</span> <span class="dt">EndOfList</span><br />twoWords <span class="fu">=</span> <span class="dt">Link</span> <span class="st">&quot;banana&quot;</span> (<span class="dt">Link</span> <span class="st">&quot;cantaloupe&quot;</span> <span class="dt">EndOfList</span>)</code></pre>
 </div>
 <div class="slide">
 <h1 id="pop-quiz">Pop quiz</h1>
 <p>Given these..</p>
-<pre class="sourceCode"><code class="sourceCode haskell">empty <span class="fu">=</span> <span class="dt">Nil</span><br />oneWord <span class="fu">=</span> <span class="dt">Cons</span> <span class="st">&quot;apple&quot;</span> <span class="dt">Nil</span><br />twoWords <span class="fu">=</span> <span class="dt">Cons</span> <span class="st">&quot;banana&quot;</span> (<span class="dt">Cons</span> <span class="st">&quot;cantaloupe&quot;</span> <span class="dt">Nil</span>)</code></pre>
+<pre class="sourceCode"><code class="sourceCode haskell">empty <span class="fu">=</span> <span class="dt">EndOfList</span><br />oneWord <span class="fu">=</span> <span class="dt">Link</span> <span class="st">&quot;apple&quot;</span> <span class="dt">EndOfList</span><br />twoWords <span class="fu">=</span> <span class="dt">Link</span> <span class="st">&quot;banana&quot;</span> (<span class="dt">Link</span> <span class="st">&quot;cantaloupe&quot;</span> <span class="dt">EndOfList</span>)</code></pre>
 <p>What are these?</p>
-<pre class="sourceCode"><code class="sourceCode haskell">mystery1 <span class="fu">=</span> <span class="dt">Cons</span> <span class="st">&quot;pear&quot;</span> empty<br />mystery2 <span class="fu">=</span> <span class="dt">Cons</span> <span class="st">&quot;peach&quot;</span> oneWord<br />mystery3 <span class="fu">=</span> <span class="dt">Cons</span> <span class="st">&quot;pineapple&quot;</span> mystery3<br />mystery4 <span class="fu">=</span> <span class="dt">Cons</span> <span class="dv">42</span> (<span class="dt">Cons</span> <span class="st">&quot;apple&quot;</span> <span class="dt">Nil</span>)</code></pre>
+<pre class="sourceCode"><code class="sourceCode haskell">mystery1 <span class="fu">=</span> <span class="dt">Link</span> <span class="st">&quot;pear&quot;</span> empty<br />mystery2 <span class="fu">=</span> <span class="dt">Link</span> <span class="st">&quot;peach&quot;</span> oneWord<br />mystery3 <span class="fu">=</span> <span class="dt">Link</span> <span class="st">&quot;pineapple&quot;</span> mystery3<br />mystery4 <span class="fu">=</span> <span class="dt">Link</span> <span class="dv">42</span> (<span class="dt">Link</span> <span class="st">&quot;apple&quot;</span> <span class="dt">EndOfList</span>)</code></pre>
 </div>
 <div class="slide">
 <h1 id="some-functions-on-list">Some functions on List</h1>
-<pre class="sourceCode"><code class="sourceCode haskell"><span class="ot">dropOne </span><span class="ot">::</span> <span class="dt">List</span> a <span class="ot">-&gt;</span> <span class="dt">List</span> a<br />dropOne (<span class="dt">Cons</span> first rest) <span class="fu">=</span> rest<br />dropOne <span class="dt">Nil</span> <span class="fu">=</span> <span class="dt">Nil</span><br /><br /><span class="ot">justOne </span><span class="ot">::</span> <span class="dt">List</span> a <span class="ot">-&gt;</span> <span class="dt">List</span> a<br />justOne (<span class="dt">Cons</span> a _) <span class="fu">=</span> <span class="dt">Cons</span> a <span class="dt">Nil</span><br />justOne <span class="dt">Nil</span> <span class="fu">=</span> <span class="dt">Nil</span></code></pre>
-</div>
-<div class="slide">
-<h1 id="a-bad-function">A bad function</h1>
-<pre class="sourceCode"><code class="sourceCode haskell"><span class="ot">firstOne </span><span class="ot">::</span> <span class="dt">List</span> a <span class="ot">-&gt;</span> a<br />firstOne (<span class="dt">Cons</span> a _) <span class="fu">=</span> a<br />firstOne <span class="dt">Nil</span> <span class="fu">=</span> <span class="fu">error</span> <span class="st">&quot;O Noes!&quot;</span></code></pre>
-</div>
-<div class="slide">
-<h1 id="maybe-a-better-way">Maybe a better way</h1>
-<pre class="sourceCode"><code class="sourceCode haskell"><span class="ot">maybeFirstOne </span><span class="ot">::</span> a <span class="ot">-&gt;</span> <span class="dt">List</span> a <span class="ot">-&gt;</span> a<br />maybeFirstOne def (<span class="dt">Cons</span> first rest) <span class="fu">=</span> first<br />maybeFirstOne def <span class="dt">Nil</span> <span class="fu">=</span> def</code></pre>
+<pre class="sourceCode"><code class="sourceCode haskell"><span class="ot">dropOne </span><span class="ot">::</span> <span class="dt">List</span> &#945; <span class="ot">-&gt;</span> <span class="dt">List</span> &#945;<br />dropOne (<span class="dt">Link</span> first rest) <span class="fu">=</span> rest<br />dropOne <span class="dt">EndOfList</span> <span class="fu">=</span> <span class="dt">EndOfList</span><br /><br /><span class="ot">justOne </span><span class="ot">::</span> <span class="dt">List</span> &#945; <span class="ot">-&gt;</span> <span class="dt">List</span> &#945;<br />justOne (<span class="dt">Link</span> a _) <span class="fu">=</span> <span class="dt">Link</span> a <span class="dt">EndOfList</span><br />justOne <span class="dt">EndOfList</span> <span class="fu">=</span> <span class="dt">EndOfList</span></code></pre>
 </div>
 <div class="slide">
 <h1 id="actually-we-dont-type-so-much">Actually, we don't type so much</h1>
-<pre class="sourceCode"><code class="sourceCode haskell"><span class="kw">data</span> [a] <span class="fu">=</span> [] <span class="fu">|</span> a <span class="fu">:</span> [a] <span class="co">-- this is built in</span><br /><span class="kw">infixr</span> <span class="dv">5</span> <span class="fu">:</span><br /><br />empty <span class="fu">=</span> []<br />oneWord <span class="fu">=</span> <span class="st">&quot;apple&quot;</span> <span class="fu">:</span> []<br />twoWords <span class="fu">=</span> <span class="st">&quot;banana&quot;</span> <span class="fu">:</span> <span class="st">&quot;cantaloupe&quot;</span> <span class="fu">:</span> []<br /><br />mystery1 <span class="fu">=</span> <span class="st">&quot;pear&quot;</span> <span class="fu">:</span> empty<br />mystery2 <span class="fu">=</span> <span class="st">&quot;peach&quot;</span> <span class="fu">:</span> oneWord<br />mystery3 <span class="fu">=</span> <span class="st">&quot;pineapple&quot;</span> <span class="fu">:</span> mystery3<br />mystery4 <span class="fu">=</span> <span class="dv">42</span> <span class="fu">:</span> <span class="st">&quot;apple&quot;</span> <span class="fu">:</span> []<br /><br /><span class="ot">dropOne </span><span class="ot">::</span> [a] <span class="ot">-&gt;</span> [a]<br />dropOne (first<span class="fu">:</span>rest) <span class="fu">=</span> rest<br />dropOne [] <span class="fu">=</span> []<br /><br /><span class="ot">justOne </span><span class="ot">::</span> [a] <span class="ot">-&gt;</span> [a]<br />justOne (a<span class="fu">:</span>_) <span class="fu">=</span> a<span class="fu">:</span>[]<br />justOne [] <span class="fu">=</span> []<br /><br /><span class="ot">firstOne </span><span class="ot">::</span> [a] <span class="ot">-&gt;</span> a<br />firstOne (a<span class="fu">:</span>_) <span class="fu">=</span> a<br />firstOne [] <span class="fu">=</span> <span class="fu">error</span> <span class="st">&quot;O Noes!&quot;</span><br /><br /><span class="ot">maybeFirstOne </span><span class="ot">::</span> a <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> a<br />maybeFirstOne def (first<span class="fu">:</span>rest) <span class="fu">=</span> first<br />maybeFirstOne def [] <span class="fu">=</span> def</code></pre>
+<pre class="sourceCode"><code class="sourceCode haskell"><span class="kw">data</span> [] a <span class="fu">=</span> [] <span class="fu">|</span> a <span class="fu">:</span> [a] <span class="co">-- this is in the standard library</span><br /><span class="kw">infixr</span> <span class="dv">5</span> <span class="fu">:</span><br /><br />empty <span class="fu">=</span> []<br />oneWord <span class="fu">=</span> <span class="st">&quot;apple&quot;</span> <span class="fu">:</span> []<br />twoWords <span class="fu">=</span> <span class="st">&quot;banana&quot;</span> <span class="fu">:</span> <span class="st">&quot;cantaloupe&quot;</span> <span class="fu">:</span> []<br /><br />mystery1 <span class="fu">=</span> <span class="st">&quot;pear&quot;</span> <span class="fu">:</span> empty<br />mystery2 <span class="fu">=</span> <span class="st">&quot;peach&quot;</span> <span class="fu">:</span> oneWord<br />mystery3 <span class="fu">=</span> <span class="st">&quot;pineapple&quot;</span> <span class="fu">:</span> mystery3<br />mystery4 <span class="fu">=</span> <span class="dv">42</span> <span class="fu">:</span> <span class="st">&quot;apple&quot;</span> <span class="fu">:</span> []<br /><br /><span class="ot">dropOne </span><span class="ot">::</span> [a] <span class="ot">-&gt;</span> [a]<br />dropOne (first<span class="fu">:</span>rest) <span class="fu">=</span> rest<br />dropOne [] <span class="fu">=</span> []<br /><br /><span class="ot">justOne </span><span class="ot">::</span> [a] <span class="ot">-&gt;</span> [a]<br />justOne (a<span class="fu">:</span>_) <span class="fu">=</span> a<span class="fu">:</span>[]<br />justOne [] <span class="fu">=</span> []</code></pre>
 </div>
 <div class="slide">
 <h1 id="actually-not-even-that-much">Actually, not even that much</h1>
-<pre class="sourceCode"><code class="sourceCode haskell"><span class="kw">data</span> [a] <span class="fu">=</span> [] <span class="fu">|</span> a <span class="fu">:</span> [a] <span class="co">-- this is built in</span><br /><span class="kw">infixr</span> <span class="dv">5</span> <span class="fu">:</span><br /><br />empty <span class="fu">=</span> []<br />oneWord <span class="fu">=</span> [<span class="st">&quot;apple&quot;</span>]                 <span class="co">-- syntatic sugar</span><br />twoWords <span class="fu">=</span> [<span class="st">&quot;banana&quot;</span>, <span class="st">&quot;cantaloupe&quot;</span>] <span class="co">-- two teaspoons full</span><br /><br />mystery1 <span class="fu">=</span> <span class="st">&quot;pear&quot;</span> <span class="fu">:</span> empty<br />mystery2 <span class="fu">=</span> <span class="st">&quot;peach&quot;</span> <span class="fu">:</span> oneWord<br />mystery3 <span class="fu">=</span> <span class="st">&quot;pineapple&quot;</span> <span class="fu">:</span> mystery3<br />mystery4 <span class="fu">=</span> [<span class="dv">42</span>, <span class="st">&quot;apple&quot;</span>] <span class="co">-- sweet, but still won't compile</span><br /><br /><span class="ot">dropOne </span><span class="ot">::</span> [a] <span class="ot">-&gt;</span> [a]<br />dropOne (first<span class="fu">:</span>rest) <span class="fu">=</span> rest<br />dropOne [] <span class="fu">=</span> []<br /><br /><span class="ot">justOne </span><span class="ot">::</span> [a] <span class="ot">-&gt;</span> [a] <span class="co">-- don't confuse these &quot;[a]&quot;s</span><br />justOne (a<span class="fu">:</span>_) <span class="fu">=</span> [a]   <span class="co">-- with this &quot;[a]&quot;</span><br />justOne [] <span class="fu">=</span> []<br /><br /><span class="ot">firstOne </span><span class="ot">::</span> [a] <span class="ot">-&gt;</span> a <span class="co">-- normally called 'head'</span><br />firstOne (a<span class="fu">:</span>_) <span class="fu">=</span> a<br />firstOne [] <span class="fu">=</span> <span class="fu">error</span> <span class="st">&quot;O Noes!&quot;</span><br /><br /><span class="ot">maybeFirstOne </span><span class="ot">::</span> a <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> a<br />maybeFirstOne def (first<span class="fu">:</span>rest) <span class="fu">=</span> first<br />maybeFirstOne def [] <span class="fu">=</span> def</code></pre>
+<pre class="sourceCode"><code class="sourceCode haskell"><span class="kw">data</span> [] a <span class="fu">=</span> [] <span class="fu">|</span> a <span class="fu">:</span> [a] <span class="co">-- this is in the standard library</span><br /><span class="kw">infixr</span> <span class="dv">5</span> <span class="fu">:</span><br /><br />empty <span class="fu">=</span> []<br />oneWord <span class="fu">=</span> [<span class="st">&quot;apple&quot;</span>]                 <span class="co">-- syntatic sugar</span><br />twoWords <span class="fu">=</span> [<span class="st">&quot;banana&quot;</span>, <span class="st">&quot;cantaloupe&quot;</span>] <span class="co">-- two teaspoons full</span><br /><br />mystery1 <span class="fu">=</span> <span class="st">&quot;pear&quot;</span> <span class="fu">:</span> empty<br />mystery2 <span class="fu">=</span> <span class="st">&quot;peach&quot;</span> <span class="fu">:</span> oneWord<br />mystery3 <span class="fu">=</span> <span class="st">&quot;pineapple&quot;</span> <span class="fu">:</span> mystery3<br />mystery4 <span class="fu">=</span> [<span class="dv">42</span>, <span class="st">&quot;apple&quot;</span>] <span class="co">-- sweet, but still won't compile</span><br /><br /><span class="ot">dropOne </span><span class="ot">::</span> [a] <span class="ot">-&gt;</span> [a]<br />dropOne (first<span class="fu">:</span>rest) <span class="fu">=</span> rest<br />dropOne [] <span class="fu">=</span> []<br /><br /><span class="ot">justOne </span><span class="ot">::</span> [a] <span class="ot">-&gt;</span> [a] <span class="co">-- don't confuse these &quot;[a]&quot;s</span><br />justOne (a<span class="fu">:</span>_) <span class="fu">=</span> [a]   <span class="co">-- with this &quot;[a]&quot;</span><br />justOne [] <span class="fu">=</span> []</code></pre>
 </div>
 <div class="slide">
-<h1 id="the-type-that-blew-my-mind">The type that blew my mind:</h1>
-<pre class="sourceCode"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Maybe</span> a <span class="fu">=</span> <span class="kw">Nothing</span> <span class="fu">|</span> <span class="kw">Just</span> a</code></pre>
-<p>Let's us write this better:</p>
-<pre class="sourceCode"><code class="sourceCode haskell"><span class="ot">firstOne' </span><span class="ot">::</span> [a] <span class="ot">-&gt;</span> <span class="dt">Maybe</span> a<br />firstOne' (a<span class="fu">:</span>_) <span class="fu">=</span> <span class="kw">Just</span> a<br />firstOne' [] <span class="fu">=</span> <span class="kw">Nothing</span></code></pre>
-</div>
-<div class="slide">
-<h1 id="why-is-this-useful">Why is this useful?</h1>
-<pre class="sourceCode"><code class="sourceCode haskell"><span class="ot">elemIndex </span><span class="ot">::</span> a <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">Int</span><br /><br /><span class="fu">lookup</span><span class="ot"> </span><span class="ot">::</span> k <span class="ot">-&gt;</span> <span class="dt">Map</span> k a <span class="ot">-&gt;</span> <span class="dt">Maybe</span> a<br /><br /><span class="ot">stripPrefix </span><span class="ot">::</span> <span class="dt">Text</span> <span class="ot">-&gt;</span> <span class="dt">Text</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">Text</span><br /><br /><span class="ot">port </span><span class="ot">::</span> <span class="dt">URIAuthority</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">Int</span></code></pre>
-</div>
-<div class="slide">
-<h1 id="one-more-built-in-thing">One more built-in thing:</h1>
+<h1 id="one-more-standard-thing">One more standard thing:</h1>
 <pre class="sourceCode"><code class="sourceCode haskell"><span class="kw">type</span> <span class="dt">String</span> <span class="fu">=</span> [<span class="dt">Char</span>]</code></pre>
 </div>
 <div class="slide">
@@ -686,6 +670,51 @@ FROM!!! MOON-VIEWING!!!
 <p><em>Onward!</em></p>
 </div>
 <div class="slide">
+<h1 id="the-type-that-blew-my-mind">The type that blew my mind:</h1>
+<pre class="sourceCode"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Maybe</span> a <span class="fu">=</span> <span class="kw">Nothing</span> <span class="fu">|</span> <span class="kw">Just</span> a</code></pre>
+</div>
+<div class="slide">
+<h1 id="a-bad-function">A bad function</h1>
+<pre class="sourceCode"><code class="sourceCode haskell"><span class="ot">firstOne </span><span class="ot">::</span> [a] <span class="ot">-&gt;</span> a<br />firstOne (a<span class="fu">:</span>_) <span class="fu">=</span> a<br />firstOne [] <span class="fu">=</span> <span class="fu">error</span> <span class="st">&quot;O Noes!&quot;</span></code></pre>
+</div>
+<div class="slide">
+<h1 id="maybe-a-better-way">Maybe a better way</h1>
+<pre class="sourceCode"><code class="sourceCode haskell"><span class="ot">firstOne' </span><span class="ot">::</span> [a] <span class="ot">-&gt;</span> <span class="dt">Maybe</span> a<br />firstOne' (a<span class="fu">:</span>_) <span class="fu">=</span> <span class="kw">Just</span> a<br />firstOne' [] <span class="fu">=</span> <span class="kw">Nothing</span></code></pre>
+</div>
+<div class="slide">
+<h1 id="useful">Useful!</h1>
+<pre class="sourceCode"><code class="sourceCode haskell"><span class="ot">elemIndex </span><span class="ot">::</span> a <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">Int</span><br /><br /><span class="fu">lookup</span><span class="ot"> </span><span class="ot">::</span> k <span class="ot">-&gt;</span> <span class="dt">Map</span> k a <span class="ot">-&gt;</span> <span class="dt">Maybe</span> a<br /><br /><span class="ot">stripPrefix </span><span class="ot">::</span> <span class="dt">Text</span> <span class="ot">-&gt;</span> <span class="dt">Text</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">Text</span><br /><br /><span class="ot">port </span><span class="ot">::</span> <span class="dt">URIAuthority</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">Int</span></code></pre>
+</div>
+<div class="slide">
+<h1 id="power-lifting-fmap">Power lifting: <code>fmap</code></h1>
+<pre class="sourceCode"><code class="sourceCode haskell"><span class="ot">addAWeek </span><span class="ot">::</span> <span class="dt">Day</span> <span class="ot">-&gt;</span> <span class="dt">Day</span><br />addAWeek d <span class="fu">=</span> addDays <span class="dv">7</span> d<br /><br /><span class="ot">interestingDates </span><span class="ot">::</span> [<span class="dt">Day</span>]<br />interestingDates <span class="fu">=</span> <span class="fu">...</span><br /><br /><span class="ot">anInterestingDate </span><span class="ot">::</span> <span class="dt">Maybe</span> <span class="dt">Day</span><br />anInterestingDate <span class="fu">=</span> firstOne' interestingDates<br /><br /><span class="ot">aWeekLater </span><span class="ot">::</span> <span class="dt">Maybe</span> <span class="dt">Day</span><br />aWeekLater <span class="fu">=</span> <span class="fu">fmap</span> addAWeek anInterestingDate</code></pre>
+<p>See the source for some intersting dates.</p>
+</div>
+<div class="slide">
+<h1 id="thinking-of-fmap-like-a-functional-programmer">Thinking of <code>fmap</code> like a functional programmer</h1>
+<pre class="sourceCode"><code class="sourceCode haskell"><span class="ot">addAWeek </span><span class="ot">::</span> <span class="dt">Day</span> <span class="ot">-&gt;</span> <span class="dt">Day</span><br />addAWeek d <span class="fu">=</span> addDays <span class="dv">7</span> d<br /><br /><span class="ot">maybeAddAWeek </span><span class="ot">::</span> <span class="dt">Maybe</span> <span class="dt">Day</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">Day</span><br />maybeAddAWeek <span class="fu">=</span> <span class="fu">fmap</span> addAWeek<br /><br /><span class="ot">aWeekLater' </span><span class="ot">::</span> <span class="dt">Maybe</span> <span class="dt">Day</span><br />aWeekLater' <span class="fu">=</span> maybeAddAWeek anInterestingDate</code></pre>
+</div>
+<div class="slide">
+<h1 id="power-alternatives">Power alternatives: <code>&lt;|&gt;</code></h1>
+<pre class="sourceCode"><code class="sourceCode haskell">locTimeZone shippingLocation<br />  <span class="fu">&lt;|&gt;</span> userTimeZone preferences<br />  <span class="fu">&lt;|&gt;</span> requestTimeZone request</code></pre>
+<p>Given:</p>
+<pre class="sourceCode"><code class="sourceCode haskell"><span class="ot">locTimeZone </span><span class="ot">::</span> <span class="dt">Location</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">TimeZone</span><br /><br /><span class="ot">userTimeZone </span><span class="ot">::</span> <span class="dt">Preferences</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">TimeZone</span><br /><br /><span class="ot">requestTimeZone </span><span class="ot">::</span> <span class="dt">HttpRequest</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">TimeZone</span></code></pre>
+<p>Like short circuit due to lazy evaluation</p>
+</div>
+<div class="slide">
+<h1 id="power-injection">Power injection: <code>&gt;&gt;=</code></h1>
+<pre class="sourceCode"><code class="sourceCode haskell">getHeader <span class="st">&quot;Date&quot;</span> message <span class="fu">&gt;&gt;=</span> parseDate <span class="fu">&gt;&gt;=</span> mailboxForDate</code></pre>
+<p>Given:</p>
+<pre class="sourceCode"><code class="sourceCode haskell"><span class="ot">getHeader </span><span class="ot">::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">MimeMessage</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">String</span><br /><br /><span class="ot">parseDate </span><span class="ot">::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">Date</span><br /><br /><span class="ot">mailboxForDate </span><span class="ot">::</span> <span class="dt">Date</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">Mailbox</span></code></pre>
+<p><code>&gt;&gt;=</code> is actually pronounced &quot;bind&quot;</p>
+</div>
+<div class="slide">
+<p>(Time for just one more?)</p>
+</div>
+<div class="slide">
+<p><em>Go!</em></p>
+</div>
+<div class="slide">
 <h1 id="types-you-dont-type">Types you don't type</h1>
 <pre class="sourceCode"><code class="sourceCode haskell"><span class="ot">runLengthEncode </span><span class="ot">::</span> <span class="kw">Eq</span> a <span class="ot">=&gt;</span> [a] <span class="ot">-&gt;</span> [(a, <span class="dt">Int</span>)]<br />runLengthEncode [] <span class="fu">=</span> []<br />runLengthEncode (x<span class="fu">:</span>xs) <span class="fu">=</span> nextGroup x <span class="dv">1</span> xs <br />  <span class="kw">where</span><br />    nextGroup e n [] <span class="fu">=</span> [(e, n)]<br />    nextGroup e n (y<span class="fu">:</span>ys)<br />      <span class="fu">|</span> e <span class="fu">==</span> y    <span class="fu">=</span>          nextGroup e (n <span class="fu">+</span> <span class="dv">1</span>) ys<br />      <span class="fu">|</span> <span class="fu">otherwise</span> <span class="fu">=</span> (e, n) <span class="fu">:</span> nextGroup y  <span class="dv">1</span>      ys</code></pre>
 </div>
@@ -700,7 +729,7 @@ FROM!!! MOON-VIEWING!!!
 </div>
 <div class="slide">
 <h1 id="quick-check-em">Quick Check 'em:</h1>
-<pre class="sourceCode"><code class="sourceCode haskell"><span class="fu">&gt;</span> quickCheck rlePropRoundTrip <br /><span class="fu">+++</span> <span class="dt">OK</span>, passed <span class="dv">100</span> tests<span class="fu">.</span><br /><span class="fu">&gt;</span> quickCheck rlePropDupesCollapsed <br /><span class="fu">+++</span> <span class="dt">OK</span>, passed <span class="dv">100</span> tests<span class="fu">.</span><br /><span class="fu">&gt;</span> quickCheck rlePropRoundTrip <br /><span class="fu">+++</span> <span class="dt">OK</span>, passed <span class="dv">100</span> tests<span class="fu">.</span></code></pre>
+<pre class="sourceCode"><code class="sourceCode haskell"><span class="fu">&gt;</span> quickCheck rlePropRoundTrip <br /><span class="fu">+++</span> <span class="dt">OK</span>, passed <span class="dv">100</span> tests<span class="fu">.</span><br /><br /><span class="fu">&gt;</span> quickCheck rlePropDupesCollapsed <br /><span class="fu">+++</span> <span class="dt">OK</span>, passed <span class="dv">100</span> tests<span class="fu">.</span><br /><br /><span class="fu">&gt;</span> quickCheck rlePropRoundTrip <br /><span class="fu">+++</span> <span class="dt">OK</span>, passed <span class="dv">100</span> tests<span class="fu">.</span></code></pre>
 </div>
 <div class="slide">
 <p>Whew</p>

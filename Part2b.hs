@@ -1,7 +1,7 @@
 module Part2b where
 
--- data [a] = [] | a : [a] -- already built in
--- infixr 5 :              -- already built in
+-- data [] a = [] | a : [a] -- already in standard library
+-- infixr 5 :               -- already in standard library
 
 empty = []
 oneWord = "apple" : []
@@ -19,11 +19,3 @@ dropOne [] = []
 justOne :: [a] -> [a]
 justOne (a:_) = a:[]
 justOne [] = []
-
-firstOne :: [a] -> a
-firstOne (a:_) = a
-firstOne [] = error "O Noes!"
-
-maybeFirstOne :: a -> [a] -> a
-maybeFirstOne def (first:rest) = first
-maybeFirstOne def [] = def

@@ -1,12 +1,14 @@
 % Haskell Amuse Bouche
 % Mark Lentczner
-% 2011-09-29
+  <!-- v1. 2011-09-29 @ Twilio -->
+  <!-- v2. 2011-10-14 @ Google -->
+% 2011-10-14
 
 # Haskell is Scary
 
 * Oh noes! Where's my state?
 * Hey, I don't want my program to be lazy!
-* Yo, PHP doesn't need no templates or combinators...
+* Yo, PHP don't need no templates or combinators...
 * Uhm, I thought dynamic languages were better?
 * MONADS!
 
@@ -14,8 +16,8 @@
 
 * Functional
 * Lazy
-* Higher order Functions
-* Static Types
+* Higher order functions
+* Type inference
 * ...shhhh: monads.
 
 # Why I got hooked
@@ -287,21 +289,23 @@ Higher Order Functions
 
 *Onward!*
 
+
+
 #Structured data
 
 By which I mean lists, of course...
 
 ~~~~ {.haskell}
-data List α = Nil
-            | Cons α (List α)
+data List α = EndOfList
+            | Link α (List α)
 ~~~~
 
 we can make some values of this type:
 
 ~~~~ {.haskell}
-empty = Nil
-oneWord = Cons "apple" Nil
-twoWords = Cons "banana" (Cons "cantaloupe" Nil)
+empty = EndOfList
+oneWord = Link "apple" EndOfList
+twoWords = Link "banana" (Link "cantaloupe" EndOfList)
 ~~~~
 
 # Pop quiz
@@ -309,52 +313,36 @@ twoWords = Cons "banana" (Cons "cantaloupe" Nil)
 Given these..
 
 ~~~~ {.haskell}
-empty = Nil
-oneWord = Cons "apple" Nil
-twoWords = Cons "banana" (Cons "cantaloupe" Nil)
+empty = EndOfList
+oneWord = Link "apple" EndOfList
+twoWords = Link "banana" (Link "cantaloupe" EndOfList)
 ~~~~
 
 What are these?
 
 ~~~~ {.haskell}
-mystery1 = Cons "pear" empty
-mystery2 = Cons "peach" oneWord
-mystery3 = Cons "pineapple" mystery3
-mystery4 = Cons 42 (Cons "apple" Nil)
+mystery1 = Link "pear" empty
+mystery2 = Link "peach" oneWord
+mystery3 = Link "pineapple" mystery3
+mystery4 = Link 42 (Link "apple" EndOfList)
 ~~~~
 
 # Some functions on List
 
 ~~~~ {.haskell}
-dropOne :: List a -> List a
-dropOne (Cons first rest) = rest
-dropOne Nil = Nil
+dropOne :: List α -> List α
+dropOne (Link first rest) = rest
+dropOne EndOfList = EndOfList
 
-justOne :: List a -> List a
-justOne (Cons a _) = Cons a Nil
-justOne Nil = Nil
-~~~~
-
-# A bad function
-
-~~~~ {.haskell}
-firstOne :: List a -> a
-firstOne (Cons a _) = a
-firstOne Nil = error "O Noes!"
-~~~~
-
-# Maybe a better way
-
-~~~~ {.haskell}
-maybeFirstOne :: a -> List a -> a
-maybeFirstOne def (Cons first rest) = first
-maybeFirstOne def Nil = def
+justOne :: List α -> List α
+justOne (Link a _) = Link a EndOfList
+justOne EndOfList = EndOfList
 ~~~~
 
 # Actually, we don't type so much
 
 ~~~~ {.haskell}
-data [a] = [] | a : [a] -- this is built in
+data [] a = [] | a : [a] -- this is in the standard library
 infixr 5 :
 
 empty = []
@@ -373,20 +361,12 @@ dropOne [] = []
 justOne :: [a] -> [a]
 justOne (a:_) = a:[]
 justOne [] = []
-
-firstOne :: [a] -> a
-firstOne (a:_) = a
-firstOne [] = error "O Noes!"
-
-maybeFirstOne :: a -> [a] -> a
-maybeFirstOne def (first:rest) = first
-maybeFirstOne def [] = def
 ~~~~
 
 # Actually, not even that much
 
 ~~~~ {.haskell}
-data [a] = [] | a : [a] -- this is built in
+data [] a = [] | a : [a] -- this is in the standard library
 infixr 5 :
 
 empty = []
@@ -405,43 +385,9 @@ dropOne [] = []
 justOne :: [a] -> [a] -- don't confuse these "[a]"s
 justOne (a:_) = [a]   -- with this "[a]"
 justOne [] = []
-
-firstOne :: [a] -> a -- normally called 'head'
-firstOne (a:_) = a
-firstOne [] = error "O Noes!"
-
-maybeFirstOne :: a -> [a] -> a
-maybeFirstOne def (first:rest) = first
-maybeFirstOne def [] = def
 ~~~~
 
-# The type that blew my mind:
-
-~~~~ {.haskell}
-data Maybe a = Nothing | Just a
-~~~~
-
-Let's us write this better:
-
-~~~~ {.haskell}
-firstOne' :: [a] -> Maybe a
-firstOne' (a:_) = Just a
-firstOne' [] = Nothing
-~~~~
-
-# Why is this useful?
-
-~~~~ {.haskell}
-elemIndex :: a -> [a] -> Maybe Int
-
-lookup :: k -> Map k a -> Maybe a
-
-stripPrefix :: Text -> Text -> Maybe Text
-
-port :: URIAuthority -> Maybe Int
-~~~~
-
-# One more built-in thing:
+# One more standard thing:
 
 ~~~~ {.haskell}
 type String = [Char]
@@ -490,6 +436,119 @@ findAfterElem _ _ = Nothing
 ----
 
 *Onward!*
+
+
+
+# The type that blew my mind:
+
+~~~~ {.haskell}
+data Maybe a = Nothing | Just a
+~~~~
+
+# A bad function
+
+~~~~ {.haskell}
+firstOne :: [a] -> a
+firstOne (a:_) = a
+firstOne [] = error "O Noes!"
+~~~~
+
+# Maybe a better way
+
+~~~~ {.haskell}
+firstOne' :: [a] -> Maybe a
+firstOne' (a:_) = Just a
+firstOne' [] = Nothing
+~~~~
+
+# Useful!
+
+~~~~ {.haskell}
+elemIndex :: a -> [a] -> Maybe Int
+
+lookup :: k -> Map k a -> Maybe a
+
+stripPrefix :: Text -> Text -> Maybe Text
+
+port :: URIAuthority -> Maybe Int
+~~~~
+
+# Power lifting: `fmap`
+
+~~~~ {.haskell}
+addAWeek :: Day -> Day
+addAWeek d = addDays 7 d
+
+interestingDates :: [Day]
+interestingDates = ...
+
+anInterestingDate :: Maybe Day
+anInterestingDate = firstOne' interestingDates
+
+aWeekLater :: Maybe Day
+aWeekLater = fmap addAWeek anInterestingDate
+~~~~
+
+See the source for some intersting dates.
+
+# Thinking of `fmap` like a functional programmer
+
+~~~~ {.haskell}
+addAWeek :: Day -> Day
+addAWeek d = addDays 7 d
+
+maybeAddAWeek :: Maybe Day -> Maybe Day
+maybeAddAWeek = fmap addAWeek
+
+aWeekLater' :: Maybe Day
+aWeekLater' = maybeAddAWeek anInterestingDate
+~~~~
+
+# Power alternatives: `<|>`
+
+~~~~ {.haskell}
+locTimeZone shippingLocation
+  <|> userTimeZone preferences
+  <|> requestTimeZone request
+~~~~
+
+Given:
+
+~~~~ {.haskell}
+locTimeZone :: Location -> Maybe TimeZone
+
+userTimeZone :: Preferences -> Maybe TimeZone
+
+requestTimeZone :: HttpRequest -> Maybe TimeZone
+~~~~
+
+Like short circuit due to lazy evaluation
+
+# Power injection: `>>=`
+
+~~~~ {.haskell}
+getHeader "Date" message >>= parseDate >>= mailboxForDate
+~~~~
+
+Given:
+
+~~~~ {.haskell}
+getHeader :: String -> MimeMessage -> Maybe String
+
+parseDate :: String -> Maybe Date
+
+mailboxForDate :: Date -> Maybe Mailbox
+~~~~
+
+`>>=` is actually pronounced "bind"
+
+----
+
+(Time for just one more?)
+
+----
+
+*Go!*
 
 # Types you don't type
 
@@ -554,8 +613,10 @@ rlePropRoundTrip ns = runLengthEncode xs == is
 ~~~~ {.haskell}
 > quickCheck rlePropRoundTrip 
 +++ OK, passed 100 tests.
+
 > quickCheck rlePropDupesCollapsed 
 +++ OK, passed 100 tests.
+
 > quickCheck rlePropRoundTrip 
 +++ OK, passed 100 tests.
 ~~~~
