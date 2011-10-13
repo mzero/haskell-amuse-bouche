@@ -577,8 +577,8 @@ runLengthEncode (x:xs) = nextGroup x 1 xs
 template<typename T>
 list<pair<T,int> > runLengthEncode(const list<T>& as) {
     list<pair<T, int> > runs;
-    if (!empty(as)) {
-        list<T>::const_iterator it = as.begin();
+    if (!as.empty()) {
+        typename list<T>::const_iterator it = as.begin();
         T elem = *it;
         int count = 0;
         

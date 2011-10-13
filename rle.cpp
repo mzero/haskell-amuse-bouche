@@ -2,11 +2,12 @@
 #include <utility>
 using namespace std;
 
+
 template<typename T>
 list<pair<T,int> > runLengthEncode(const list<T>& as) {
     list<pair<T, int> > runs;
-    if (!empty(as)) {
-        list<T>::const_iterator it = as.begin();
+    if (!as.empty()) {
+        typename list<T>::const_iterator it = as.begin();
         T elem = *it;
         int count = 0;
         
