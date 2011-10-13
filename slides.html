@@ -696,9 +696,9 @@ FROM!!! MOON-VIEWING!!!
 </div>
 <div class="slide">
 <h1 id="power-alternatives">Power alternatives: <code>&lt;|&gt;</code></h1>
-<pre class="sourceCode"><code class="sourceCode haskell">locTimeZone shippingLocation<br />  <span class="fu">&lt;|&gt;</span> userTimeZone preferences<br />  <span class="fu">&lt;|&gt;</span> requestTimeZone request</code></pre>
+<pre class="sourceCode"><code class="sourceCode haskell"><span class="ot">pickShow </span><span class="ot">::</span> <span class="dt">Person</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">String</span><br />pickShow p <span class="fu">=</span><br />    favoriteShow (name p)<br />    <span class="fu">&lt;|&gt;</span> showWithName (name p)<br />    <span class="fu">&lt;|&gt;</span> showForYear (year p)</code></pre>
 <p>Given:</p>
-<pre class="sourceCode"><code class="sourceCode haskell"><span class="ot">locTimeZone </span><span class="ot">::</span> <span class="dt">Location</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">TimeZone</span><br /><br /><span class="ot">userTimeZone </span><span class="ot">::</span> <span class="dt">Preferences</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">TimeZone</span><br /><br /><span class="ot">requestTimeZone </span><span class="ot">::</span> <span class="dt">HttpRequest</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">TimeZone</span></code></pre>
+<pre class="sourceCode"><code class="sourceCode haskell"><span class="ot">favoriteShow </span><span class="ot">::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">String</span><br /><br /><span class="ot">showWithName </span><span class="ot">::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">String</span><br /><br /><span class="ot">showForYear </span><span class="ot">::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">String</span></code></pre>
 <p>Like short circuit due to lazy evaluation</p>
 </div>
 <div class="slide">

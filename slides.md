@@ -507,19 +507,21 @@ aWeekLater' = maybeAddAWeek anInterestingDate
 # Power alternatives: `<|>`
 
 ~~~~ {.haskell}
-locTimeZone shippingLocation
-  <|> userTimeZone preferences
-  <|> requestTimeZone request
+pickShow :: Person -> Maybe String
+pickShow p =
+    favoriteShow (name p)
+    <|> showWithName (name p)
+    <|> showForYear (year p)
 ~~~~
 
 Given:
 
 ~~~~ {.haskell}
-locTimeZone :: Location -> Maybe TimeZone
+favoriteShow :: String -> Maybe String
 
-userTimeZone :: Preferences -> Maybe TimeZone
+showWithName :: String -> Maybe String
 
-requestTimeZone :: HttpRequest -> Maybe TimeZone
+showForYear :: Int -> Maybe String
 ~~~~
 
 Like short circuit due to lazy evaluation
