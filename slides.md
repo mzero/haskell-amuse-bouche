@@ -1,4 +1,4 @@
-% Haskell Amuse Bouche
+% Haskell Amuse-Bouche
 % Mark Lentczner
   <!-- v1. 2011-09-29 @ Twilio -->
   <!-- v2. 2011-10-14 @ Google -->
@@ -656,7 +656,7 @@ Whew
 # Thanks
 
 Mark Lentczner
-
-`mark@glyphic.com`
+ 
+`mark﹫glyphic·com` <|> `mzero﹫google·com`
 
 `mzero` on IRC
