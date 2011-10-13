@@ -87,6 +87,7 @@ Mark Lentczner<br/><br/>
 <pre class="sourceCode"><code class="sourceCode bash">runhaskell Part1.hs</code></pre>
 </div>
 <div class="slide">
+<h1 id="run-it">Run it</h1>
 <p>Original poem:</p>
 <pre><code>occasional clouds
 one gets a rest
@@ -150,13 +151,15 @@ one gets a rest
 </code></pre>
 </div>
 <div class="slide">
-<h1 id="but-wait-wheres-the-second-argument-to-map">But wait, where's the second argument to <code>map</code>?</h1>
-<p>Think of <code>map</code>s type this way:</p>
+<h1 id="but-wait-wheres-the-2nd-argument">But wait, where's the 2nd argument?</h1>
+<p>How can we write:</p>
+<pre class="sourceCode"><code class="sourceCode haskell">eachLine f <span class="fu">=</span> <span class="fu">unlines</span> <span class="fu">.</span> <span class="fu">map</span> f <span class="fu">.</span> <span class="fu">lines</span></code></pre>
+<p>Think of <code>map</code>'s type this way:</p>
 <pre class="sourceCode"><code class="sourceCode haskell"><span class="fu">map</span><span class="ot"> </span><span class="ot">::</span> (a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> ([a] <span class="ot">-&gt;</span> [b])</code></pre>
 <p>It takes a function and transforms (lifts) it into a function over lists</p>
 </div>
 <div class="slide">
-<h1 id="lets-yell">Let's *YELL!*</h1>
+<h1 id="lets-yell">Let's YELL!!!</h1>
 <pre class="sourceCode"><code class="sourceCode haskell"><span class="ot">yell </span><span class="ot">::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span><br />yell s <span class="fu">=</span> <span class="fu">map</span> <span class="fu">toUpper</span> s <span class="fu">++</span> <span class="st">&quot;!!!&quot;</span><br /><br /><span class="ot">yellEachLine </span><span class="ot">::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span><br />yellEachLine <span class="fu">=</span> eachLine yell</code></pre>
 <p>gives</p>
 <pre><code>OCCASIONAL CLOUDS!!!
@@ -242,7 +245,7 @@ FROM!!! MOON-VIEWING!!!
 <p><em>Onward!</em></p>
 </div>
 <div class="slide">
-<h1 id="the-type-that-blew-my-mind">The type that blew my mind:</h1>
+<h1 id="the-type-that-blew-my-mind">The type that blew my mind</h1>
 <pre class="sourceCode"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Maybe</span> a <span class="fu">=</span> <span class="kw">Nothing</span> <span class="fu">|</span> <span class="kw">Just</span> a</code></pre>
 </div>
 <div class="slide">
@@ -263,7 +266,7 @@ FROM!!! MOON-VIEWING!!!
 <p>See the source for some intersting dates.</p>
 </div>
 <div class="slide">
-<h1 id="thinking-of-fmap-like-a-functional-programmer">Thinking of <code>fmap</code> like a functional programmer</h1>
+<h1 id="thinking-like-a-haskeller">Thinking like a Haskeller</h1>
 <pre class="sourceCode"><code class="sourceCode haskell"><span class="ot">addAWeek </span><span class="ot">::</span> <span class="dt">Day</span> <span class="ot">-&gt;</span> <span class="dt">Day</span><br />addAWeek d <span class="fu">=</span> addDays <span class="dv">7</span> d<br /><br /><span class="ot">maybeAddAWeek </span><span class="ot">::</span> <span class="dt">Maybe</span> <span class="dt">Day</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">Day</span><br />maybeAddAWeek <span class="fu">=</span> <span class="fu">fmap</span> addAWeek<br /><br /><span class="ot">aWeekLater' </span><span class="ot">::</span> <span class="dt">Maybe</span> <span class="dt">Day</span><br />aWeekLater' <span class="fu">=</span> maybeAddAWeek anInterestingDate</code></pre>
 </div>
 <div class="slide">

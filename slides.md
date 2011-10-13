@@ -83,7 +83,7 @@ Put that in a file named `Part1.hs` and then at the shell:
 runhaskell Part1.hs
 ~~~~
 
-----
+# Run it
 
 Original poem:
 
@@ -215,9 +215,15 @@ and we get:
     from moon-viewing
 ~~~~
 
-# But wait, where's the second argument to `map`?
+# But wait, where's the 2nd argument?
 
-Think of `map`s type this way:
+How can we write:
+
+~~~~ {.haskell}
+eachLine f = unlines . map f . lines
+~~~~
+
+Think of `map`'s type this way:
 
 ~~~~ {.haskell}
 map :: (a -> b) -> ([a] -> [b])
@@ -225,7 +231,7 @@ map :: (a -> b) -> ([a] -> [b])
 
 It takes a function and transforms (lifts) it into a function over lists
 
-# Let's \*YELL!\*
+# Let's YELL!!!
 
 ~~~~ {.haskell}
 yell :: String -> String
@@ -439,7 +445,7 @@ findAfterElem _ _ = Nothing
 
 
 
-# The type that blew my mind:
+# The type that blew my mind
 
 ~~~~ {.haskell}
 data Maybe a = Nothing | Just a
@@ -491,7 +497,7 @@ aWeekLater = fmap addAWeek anInterestingDate
 
 See the source for some intersting dates.
 
-# Thinking of `fmap` like a functional programmer
+# Thinking like a Haskeller
 
 ~~~~ {.haskell}
 addAWeek :: Day -> Day
