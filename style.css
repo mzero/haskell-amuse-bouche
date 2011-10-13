@@ -1,7 +1,51 @@
+body {
+  font-family: "Lucida Grande", Lucida, Verdana, sans-serif;
+}
+
+div.slide h1 {
+  background-color: #454545;
+  color: #fff;
+  padding: 0.5em 1em;
+}
+div.slide h1, div.slide.titlepage h1 {
+  margin-right: -20px;
+  margin-left: -20px;
+}
+h1 code {
+  color: #a5cfff;
+}
+
+code {
+  font-weight: normal;
+  color: #00428C;
+}
+
+li p {
+  margin-left: 0;
+}
+
+div.slide > p:first-child {
+  margin-top: 5em;
+  text-align: center;
+  color: #009091;
+  font-size: 150%;
+}
+
+
 table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode, table.sourceCode pre 
    { margin: 0; padding: 0; border: 0; vertical-align: baseline; border: none; }
 td.lineNumbers { border-right: 1px solid #AAAAAA; text-align: right; color: #AAAAAA; padding-right: 5px; padding-left: 5px; }
 td.sourceCode { padding-left: 5px; }
+
+pre {
+  background: #fffcc5;
+  border: 1px solid #a69e16;
+  padding: 0.5em 1.5em;
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 code.sourceCode span.kw { color: #007020; font-weight: bold; } 
 code.sourceCode span.dt { color: #902000; }
 code.sourceCode span.dv { color: #40a070; }
@@ -10,10 +54,8 @@ code.sourceCode span.fl { color: #40a070; }
 code.sourceCode span.ch { color: #4070a0; }
 code.sourceCode span.st { color: #4070a0; }
 code.sourceCode span.co { color: #60a0b0; font-style: italic; }
-code.sourceCode span.ot { color: #007020; }
+xcode.sourceCode span.ot { color: #007020; }
 code.sourceCode span.al { color: red; font-weight: bold; }
 code.sourceCode span.fu { color: #06287e; }
 code.sourceCode span.re { }
 code.sourceCode span.er { color: red; font-weight: bold; }
-/*]]>*/
-
