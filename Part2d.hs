@@ -1,5 +1,10 @@
 module Part2d where
 
+pickMessage :: Maybe Int -> String
+pickMessage (Just n) = "Pick a number, like " ++ show n ++ "."
+pickMessage Nothing = "Pick any number you like."
+
+
 findAfterStar :: String -> Maybe Char
 findAfterStar (c:d:r) =
   if c == '*' then Just d

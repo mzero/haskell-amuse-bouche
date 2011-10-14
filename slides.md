@@ -393,10 +393,38 @@ justOne (a:_) = [a]   -- with this "[a]"
 justOne [] = []
 ~~~~
 
-# One more standard thing:
+# Two more standard things:
 
 ~~~~ {.haskell}
 type String = [Char]
+~~~~
+
+~~~~ {.haskell}
+data Maybe a = Nothing | Just a
+~~~~
+
+# A bad function
+
+~~~~ {.haskell}
+firstOne :: [a] -> a
+firstOne (a:_) = a
+firstOne [] = error "O Noes!"
+~~~~
+
+# Maybe a better way
+
+~~~~ {.haskell}
+firstOne' :: [a] -> Maybe a
+firstOne' (a:_) = Just a
+firstOne' [] = Nothing
+~~~~
+
+Use it like this:
+
+~~~~ {.haskell}
+pickMessage :: Maybe Int -> String
+pickMessage (Just n) = "Pick a number, like " ++ show n ++ "."
+pickMessage Nothing = "Pick any number you like."
 ~~~~
 
 # Now, let's write some real code
@@ -444,30 +472,13 @@ findAfterElem _ _ = Nothing
 *Onward!*
 
 
-
 # The type that blew my mind
 
 ~~~~ {.haskell}
 data Maybe a = Nothing | Just a
 ~~~~
 
-# A bad function
-
-~~~~ {.haskell}
-firstOne :: [a] -> a
-firstOne (a:_) = a
-firstOne [] = error "O Noes!"
-~~~~
-
-# Maybe a better way
-
-~~~~ {.haskell}
-firstOne' :: [a] -> Maybe a
-firstOne' (a:_) = Just a
-firstOne' [] = Nothing
-~~~~
-
-# Useful!
+# `Maybe` quite useful:
 
 ~~~~ {.haskell}
 elemIndex :: a -> [a] -> Maybe Int
@@ -495,7 +506,7 @@ aWeekLater :: Maybe Day
 aWeekLater = fmap addAWeek anInterestingDate
 ~~~~
 
-See the source for some intersting dates.
+_(See the source for some intersting dates.)_
 
 # Thinking like a Haskeller
 
@@ -550,6 +561,26 @@ mailboxForDate :: Date -> Maybe Mailbox
 
 `>>=` is actually pronounced "bind"
 
+# More generic
+
+~~~~ {.haskell}
+fmap :: Functor f => (a -> b) -> f a -> f b
+
+(<|>) :: Alternative f => f a -> f a -> f a
+
+(>>=) :: Monad m => m a -> (a -> m b) -> m b
+~~~~
+
+Type classes and instances:
+
+~~~~
+Functor       Maybe, [], (Either a), IO
+
+Alternative   Maybe, []
+
+Monad         Maybe, [], (Either a), IO
+~~~~
+
 ----
 
 (Time for just one more?)
@@ -557,6 +588,8 @@ mailboxForDate :: Date -> Maybe Mailbox
 ----
 
 *Go!*
+
+
 
 # Types you don't type
 
