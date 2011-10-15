@@ -403,7 +403,25 @@ type String = [Char]
 data Maybe a = Nothing | Just a
 ~~~~
 
-# A bad function
+# Use it like this
+
+~~~~ {.haskell}
+pickMessage :: Maybe Int -> String
+pickMessage (Just n) = "Pick a number, like " ++ show n ++ "."
+pickMessage Nothing = "Pick any number you like."
+~~~~
+
+# The awkward and the bad
+
+This is awkward:
+
+~~~~ {.haskell}
+justOne :: [a] -> [a]
+justOne (a:_) = [a]
+justOne [] = []
+~~~~
+
+This is bad:
 
 ~~~~ {.haskell}
 firstOne :: [a] -> a
@@ -419,13 +437,6 @@ firstOne' (a:_) = Just a
 firstOne' [] = Nothing
 ~~~~
 
-Use it like this:
-
-~~~~ {.haskell}
-pickMessage :: Maybe Int -> String
-pickMessage (Just n) = "Pick a number, like " ++ show n ++ "."
-pickMessage Nothing = "Pick any number you like."
-~~~~
 
 # Now, let's write some real code
 

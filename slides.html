@@ -39,15 +39,15 @@ Mark Lentczner<br/><code>mzero﹫google·com</code><br/>
 <li>Lazy</li>
 <li>Higher order functions</li>
 <li>Type inference</li>
-<li>...shhhh: monads.</li>
+<li><em>...shhhh: Monads</em></li>
 </ul>
 </div>
 <div class="slide">
 <h1 id="why-i-got-hooked">Why I got hooked</h1>
 <ul>
-<li>It is a new way to thinking about programming</li>
+<li>It is a new way to thinking about programming.</li>
 <li>It twists the brain in delightful ways.</li>
-<li>It is very expressive, yet concise and clear</li>
+<li>It is very expressive, yet concise and clear.</li>
 <li>It is beautiful.</li>
 </ul>
 </div>
@@ -68,7 +68,7 @@ Mark Lentczner<br/><code>mzero﹫google·com</code><br/>
 <h1 id="something-familiar">Something Familiar</h1>
 <pre class="sourceCode"><code class="sourceCode bash"><span class="kw">cat</span> poem <span class="kw">|</span> <span class="kw">sort</span></code></pre>
 <pre class="sourceCode"><code class="sourceCode bash"><span class="kw">cat</span> poem <span class="kw">|</span> <span class="kw">rev</span> <span class="kw">|</span> <span class="kw">head</span></code></pre>
-<pre class="sourceCode"><code class="sourceCode bash"><span class="kw">cat</span> poem <span class="kw">|</span> <span class="kw">sed</span> -e <span class="st">'s/$/!!!/'</span></code></pre>
+<pre class="sourceCode"><code class="sourceCode bash"><span class="kw">cat</span> poem <span class="kw">|</span> <span class="kw">tr</span> a-z A-Z <span class="kw">|</span> <span class="kw">sed</span> -e <span class="st">'s/$/!!!/'</span></code></pre>
 </div>
 <div class="slide">
 <h1 id="what-do-they-all-do">What do they all do?</h1>
@@ -225,14 +225,19 @@ FROM!!! MOON-VIEWING!!!
 <pre class="sourceCode"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Maybe</span> a <span class="fu">=</span> <span class="kw">Nothing</span> <span class="fu">|</span> <span class="kw">Just</span> a</code></pre>
 </div>
 <div class="slide">
-<h1 id="a-bad-function">A bad function</h1>
+<h1 id="use-it-like-this">Use it like this</h1>
+<pre class="sourceCode"><code class="sourceCode haskell"><span class="ot">pickMessage </span><span class="ot">::</span> <span class="dt">Maybe</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">String</span><br />pickMessage (<span class="kw">Just</span> n) <span class="fu">=</span> <span class="st">&quot;Pick a number, like &quot;</span> <span class="fu">++</span> <span class="fu">show</span> n <span class="fu">++</span> <span class="st">&quot;.&quot;</span><br />pickMessage <span class="kw">Nothing</span> <span class="fu">=</span> <span class="st">&quot;Pick any number you like.&quot;</span></code></pre>
+</div>
+<div class="slide">
+<h1 id="the-awkward-and-the-bad">The awkward and the bad</h1>
+<p>This is awkward:</p>
+<pre class="sourceCode"><code class="sourceCode haskell"><span class="ot">justOne </span><span class="ot">::</span> [a] <span class="ot">-&gt;</span> [a]<br />justOne (a<span class="fu">:</span>_) <span class="fu">=</span> [a]<br />justOne [] <span class="fu">=</span> []</code></pre>
+<p>This is bad:</p>
 <pre class="sourceCode"><code class="sourceCode haskell"><span class="ot">firstOne </span><span class="ot">::</span> [a] <span class="ot">-&gt;</span> a<br />firstOne (a<span class="fu">:</span>_) <span class="fu">=</span> a<br />firstOne [] <span class="fu">=</span> <span class="fu">error</span> <span class="st">&quot;O Noes!&quot;</span></code></pre>
 </div>
 <div class="slide">
-<h1 id="maybe-a-better-way">Maybe a better way</h1>
+<h1 id="maybe-theres-a-better-way"><code>Maybe</code>, there's a better way</h1>
 <pre class="sourceCode"><code class="sourceCode haskell"><span class="ot">firstOne' </span><span class="ot">::</span> [a] <span class="ot">-&gt;</span> <span class="dt">Maybe</span> a<br />firstOne' (a<span class="fu">:</span>_) <span class="fu">=</span> <span class="kw">Just</span> a<br />firstOne' [] <span class="fu">=</span> <span class="kw">Nothing</span></code></pre>
-<p>Use it like this:</p>
-<pre class="sourceCode"><code class="sourceCode haskell"><span class="ot">pickMessage </span><span class="ot">::</span> <span class="dt">Maybe</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">String</span><br />pickMessage (<span class="kw">Just</span> n) <span class="fu">=</span> <span class="st">&quot;Pick a number, like &quot;</span> <span class="fu">++</span> <span class="fu">show</span> n <span class="fu">++</span> <span class="st">&quot;.&quot;</span><br />pickMessage <span class="kw">Nothing</span> <span class="fu">=</span> <span class="st">&quot;Pick any number you like.&quot;</span></code></pre>
 </div>
 <div class="slide">
 <h1 id="now-lets-write-some-real-code">Now, let's write some real code</h1>
