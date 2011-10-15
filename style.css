@@ -12,7 +12,8 @@ div.slide h1, div.slide.titlepage h1 {
   margin-left: -20px;
 }
 h1 code {
-  color: #a5cfff;
+  color: #cbe3ff;
+  font-weight: bold;
 }
 
 code {
@@ -31,6 +32,9 @@ div.slide > p:first-child {
   font-size: 150%;
 }
 
+h1 + pre.sourceCode {
+  margin-top: 3em;
+}
 
 table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode, table.sourceCode pre 
    { margin: 0; padding: 0; border: 0; vertical-align: baseline; border: none; }
@@ -38,8 +42,8 @@ td.lineNumbers { border-right: 1px solid #AAAAAA; text-align: right; color: #AAA
 td.sourceCode { padding-left: 5px; }
 
 pre {
-  background: #fffcc5;
-  border: 1px solid #a69e16;
+  background: #fffee5;
+  border: 1px solid #d8d7c2;
   padding: 0.5em 1.5em;
   font-weight: normal;
   font-style: normal;
