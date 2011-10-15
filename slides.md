@@ -18,13 +18,13 @@
 * Lazy
 * Higher order functions
 * Type inference
-* ...shhhh: monads.
+* _...shhhh: Monads_
 
 # Why I got hooked
 
-* It is a new way to thinking about programming
+* It is a new way to thinking about programming.
 * It twists the brain in delightful ways.
-* It is very expressive, yet concise and clear
+* It is very expressive, yet concise and clear.
 * It is beautiful.
 
 # Warning
@@ -54,7 +54,7 @@ cat poem | rev | head
 ~~~~
 
 ~~~~ {.bash}
-cat poem | sed -e 's/$/!!!/'
+cat poem | tr a-z A-Z | sed -e 's/$/!!!/'
 ~~~~
 
 # What do they all do?
@@ -411,7 +411,7 @@ firstOne (a:_) = a
 firstOne [] = error "O Noes!"
 ~~~~
 
-# Maybe a better way
+# `Maybe`, there's a better way
 
 ~~~~ {.haskell}
 firstOne' :: [a] -> Maybe a
