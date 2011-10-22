@@ -245,7 +245,7 @@ FROM!!! MOON-VIEWING!!!
 <pre class="sourceCode"><code class="sourceCode haskell"><span class="ot">findAfterStar </span><span class="ot">::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">Char</span><br />findAfterStar (c<span class="fu">:</span>d<span class="fu">:</span>r) <span class="fu">=</span><br />  <span class="kw">if</span> c <span class="fu">==</span> <span class="ch">'*'</span> <span class="kw">then</span> <span class="kw">Just</span> d<br />              <span class="kw">else</span> findAfterStar (d<span class="fu">:</span>r)<br />findAfterStar _ <span class="fu">=</span> <span class="kw">Nothing</span></code></pre>
 </div>
 <div class="slide">
-<h1 id="make-it-a-little-be-more-generic">Make it a little be more generic</h1>
+<h1 id="make-it-a-little-bit-more-generic">Make it a little bit more generic</h1>
 <p>Find the first character after some other character:</p>
 <pre class="sourceCode"><code class="sourceCode haskell"><span class="ot">findAfterChar </span><span class="ot">::</span> <span class="dt">Char</span> <span class="ot">-&gt;</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">Char</span><br />findAfterChar m (c<span class="fu">:</span>d<span class="fu">:</span>r) <span class="fu">=</span><br />  <span class="kw">if</span> c <span class="fu">==</span> m <span class="kw">then</span> <span class="kw">Just</span> d<br />            <span class="kw">else</span> findAfterChar m (d<span class="fu">:</span>r)<br />findAfterChar _ _ <span class="fu">=</span> <span class="kw">Nothing</span></code></pre>
 </div>

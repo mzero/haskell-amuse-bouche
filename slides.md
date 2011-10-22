@@ -450,7 +450,7 @@ findAfterStar (c:d:r) =
 findAfterStar _ = Nothing
 ~~~~
 
-# Make it a little be more generic
+# Make it a little bit more generic
 
 Find the first character after some other character:
 
