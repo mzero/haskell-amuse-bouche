@@ -22,8 +22,8 @@ Mark Lentczner<br/><code>mzero﹫google·com</code><br/>
   </p>
   <p class="date">2011-10-14</p>
 </div>
-<div class="slide">
-<h1 id="haskell-is-scary">Haskell is Scary</h1>
+<div class="section slide level1" id="haskell-is-scary">
+<h1>Haskell is Scary</h1>
 <ul>
 <li>Oh noes! Where's my state?</li>
 <li>Hey, I don't want my program to be lazy!</li>
@@ -32,8 +32,8 @@ Mark Lentczner<br/><code>mzero﹫google·com</code><br/>
 <li>MONADS!</li>
 </ul>
 </div>
-<div class="slide">
-<h1 id="haskell-is-scary-cool">Haskell is Scary Cool</h1>
+<div class="section slide level1" id="haskell-is-scary-cool">
+<h1>Haskell is Scary Cool</h1>
 <ul>
 <li>Functional</li>
 <li>Lazy</li>
@@ -42,8 +42,8 @@ Mark Lentczner<br/><code>mzero﹫google·com</code><br/>
 <li><em>...shhhh: Monads</em></li>
 </ul>
 </div>
-<div class="slide">
-<h1 id="why-i-got-hooked">Why I got hooked</h1>
+<div class="section slide level1" id="why-i-got-hooked">
+<h1>Why I got hooked</h1>
 <ul>
 <li>It is a new way to thinking about programming.</li>
 <li>It twists the brain in delightful ways.</li>
@@ -51,27 +51,27 @@ Mark Lentczner<br/><code>mzero﹫google·com</code><br/>
 <li>It is beautiful.</li>
 </ul>
 </div>
-<div class="slide">
-<h1 id="warning">Warning</h1>
+<div class="section slide level1" id="warning">
+<h1>Warning</h1>
 <ul>
 <li><p>I have a lot of code to show you</p></li>
 <li><p>It's gonna look like crazy-moon language</p></li>
 <li><p>Be brave</p></li>
 </ul>
 </div>
-<div class="slide">
-<h1 id="wanna-play-along">Wanna play along?</h1>
+<div class="section slide level1" id="wanna-play-along">
+<h1>Wanna play along?</h1>
 <p>The slides and code are here:</p>
 <p><code>https://github.com/mtnviewmark/haskell-amuse-bouche</code></p>
 </div>
-<div class="slide">
-<h1 id="something-familiar">Something Familiar</h1>
-<pre class="sourceCode"><code class="sourceCode bash"><span class="kw">cat</span> poem <span class="kw">|</span> <span class="kw">sort</span></code></pre>
-<pre class="sourceCode"><code class="sourceCode bash"><span class="kw">cat</span> poem <span class="kw">|</span> <span class="kw">rev</span> <span class="kw">|</span> <span class="kw">head</span></code></pre>
-<pre class="sourceCode"><code class="sourceCode bash"><span class="kw">cat</span> poem <span class="kw">|</span> <span class="kw">tr</span> a-z A-Z <span class="kw">|</span> <span class="kw">sed</span> -e <span class="st">'s/$/!!!/'</span></code></pre>
+<div class="section slide level1" id="something-familiar">
+<h1>Something Familiar</h1>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">cat</span> poem <span class="kw">|</span> <span class="kw">sort</span></code></pre>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">cat</span> poem <span class="kw">|</span> <span class="kw">rev</span> <span class="kw">|</span> <span class="kw">head</span></code></pre>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">cat</span> poem <span class="kw">|</span> <span class="kw">tr</span> a-z A-Z <span class="kw">|</span> <span class="kw">sed</span> -e <span class="st">&#39;s/$/!!!/&#39;</span></code></pre>
 </div>
-<div class="slide">
-<h1 id="what-do-they-all-do">What do they all do?</h1>
+<div class="section slide level1" id="what-do-they-all-do">
+<h1>What do they all do?</h1>
 <ul>
 <li><p>Take input</p></li>
 <li><p>Process the input.</p></li>
@@ -80,271 +80,464 @@ Mark Lentczner<br/><code>mzero﹫google·com</code><br/>
 <li><p>In short, they are functional, pure, and lazy.</p></li>
 </ul>
 </div>
-<div class="slide">
-<h1 id="lets-write-that-in-haskell">Let's write that in Haskell</h1>
-<pre class="sourceCode"><code class="sourceCode haskell">main <span class="fu">=</span> <span class="fu">readFile</span> <span class="st">&quot;poem&quot;</span> <span class="fu">&gt;&gt;=</span> <span class="fu">putStr</span> <span class="fu">.</span> process<br /><br />process t <span class="fu">=</span> <span class="fu">unlines</span> (<span class="fu">sort</span> (<span class="fu">lines</span> t))</code></pre>
+<div class="section slide level1" id="lets-write-that-in-haskell">
+<h1>Let's write that in Haskell</h1>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> <span class="fu">readFile</span> <span class="st">&quot;poem&quot;</span> <span class="fu">&gt;&gt;=</span> <span class="fu">putStr</span> <span class="fu">.</span> process
+
+process t <span class="fu">=</span> <span class="fu">unlines</span> (<span class="fu">sort</span> (<span class="fu">lines</span> t))</code></pre>
 <p>Put that in a file named <code>Part1.hs</code> and then at the shell:</p>
-<pre class="sourceCode"><code class="sourceCode bash">runhaskell Part1.hs</code></pre>
+<pre class="sourceCode bash"><code class="sourceCode bash">runhaskell Part1.hs</code></pre>
 </div>
-<div class="slide">
-<h1 id="run-it">Run it</h1>
+<div class="section slide level1" id="run-it">
+<h1>Run it</h1>
 <p>Original poem:</p>
 <pre><code>occasional clouds
 one gets a rest
-from moon-viewing
-</code></pre>
+from moon-viewing</code></pre>
 <p>Program output:</p>
 <pre><code>from moon-viewing
 occasional clouds
-one gets a rest
-</code></pre>
+one gets a rest</code></pre>
 </div>
-<div class="slide">
-<h1 id="ignoring-the-main-behind-the-curtain...">Ignoring the <code>main</code> behind the curtain...</h1>
-<pre class="sourceCode"><code class="sourceCode haskell">process t <span class="fu">=</span> <span class="fu">unlines</span> (<span class="fu">sort</span> (<span class="fu">lines</span> t))</code></pre>
+<div class="section slide level1" id="ignoring-the-main-behind-the-curtain...">
+<h1>Ignoring the <code>main</code> behind the curtain...</h1>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">process t <span class="fu">=</span> <span class="fu">unlines</span> (<span class="fu">sort</span> (<span class="fu">lines</span> t))</code></pre>
 <p>Remember <strong>f(g(x)) = (f⋅g)(x)</strong> from high school algebra?</p>
-<pre class="sourceCode"><code class="sourceCode haskell">process' t <span class="fu">=</span> (<span class="fu">unlines</span> <span class="fu">.</span> <span class="fu">sort</span> <span class="fu">.</span> <span class="fu">lines</span>) t</code></pre>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">process&#39; t <span class="fu">=</span> (<span class="fu">unlines</span> <span class="fu">.</span> <span class="fu">sort</span> <span class="fu">.</span> <span class="fu">lines</span>) t</code></pre>
 <p>And algebraic simplificiation works here too:</p>
-<pre class="sourceCode"><code class="sourceCode haskell">process'' <span class="fu">=</span> <span class="fu">unlines</span> <span class="fu">.</span> <span class="fu">sort</span> <span class="fu">.</span> <span class="fu">lines</span></code></pre>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">process&#39;&#39; <span class="fu">=</span> <span class="fu">unlines</span> <span class="fu">.</span> <span class="fu">sort</span> <span class="fu">.</span> <span class="fu">lines</span></code></pre>
 </div>
-<div class="slide">
-<h1 id="we-could-code-some-other-common-ones">We could code some other common ones:</h1>
-<pre class="sourceCode"><code class="sourceCode haskell">sortLines     <span class="fu">=</span> <span class="fu">unlines</span> <span class="fu">.</span> <span class="fu">sort</span> <span class="fu">.</span> <span class="fu">lines</span><br />reverseLines  <span class="fu">=</span> <span class="fu">unlines</span> <span class="fu">.</span> <span class="fu">reverse</span> <span class="fu">.</span> <span class="fu">lines</span><br />firstTwoLines <span class="fu">=</span> <span class="fu">unlines</span> <span class="fu">.</span> <span class="fu">take</span> <span class="dv">2</span> <span class="fu">.</span> <span class="fu">lines</span></code></pre>
+<div class="section slide level1" id="we-could-code-some-other-common-ones">
+<h1>We could code some other common ones:</h1>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">sortLines     <span class="fu">=</span> <span class="fu">unlines</span> <span class="fu">.</span> <span class="fu">sort</span> <span class="fu">.</span> <span class="fu">lines</span>
+reverseLines  <span class="fu">=</span> <span class="fu">unlines</span> <span class="fu">.</span> <span class="fu">reverse</span> <span class="fu">.</span> <span class="fu">lines</span>
+firstTwoLines <span class="fu">=</span> <span class="fu">unlines</span> <span class="fu">.</span> <span class="fu">take</span> <span class="dv">2</span> <span class="fu">.</span> <span class="fu">lines</span></code></pre>
 <p>Anyone spot a pattern?</p>
 </div>
-<div class="slide">
-<h1 id="we-can-factor-it-out">We can factor it out!</h1>
-<pre class="sourceCode"><code class="sourceCode haskell">byLines f <span class="fu">=</span> <span class="fu">unlines</span> <span class="fu">.</span> f <span class="fu">.</span> <span class="fu">lines</span><br /><br />sortLines'     <span class="fu">=</span> byLines <span class="fu">sort</span><br />reverseLines'  <span class="fu">=</span> byLines <span class="fu">reverse</span><br />firstTwoLines' <span class="fu">=</span> byLines (<span class="fu">take</span> <span class="dv">2</span>)</code></pre>
+<div class="section slide level1" id="we-can-factor-it-out">
+<h1>We can factor it out!</h1>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">byLines f <span class="fu">=</span> <span class="fu">unlines</span> <span class="fu">.</span> f <span class="fu">.</span> <span class="fu">lines</span>
+
+sortLines&#39;     <span class="fu">=</span> byLines <span class="fu">sort</span>
+reverseLines&#39;  <span class="fu">=</span> byLines <span class="fu">reverse</span>
+firstTwoLines&#39; <span class="fu">=</span> byLines (<span class="fu">take</span> <span class="dv">2</span>)</code></pre>
 </div>
-<div class="slide">
-<h1 id="what-if-we-want-to-modify-the-lines">What if we want to modify the lines?</h1>
-<pre class="sourceCode"><code class="sourceCode haskell">indent s <span class="fu">=</span> <span class="st">&quot;    &quot;</span> <span class="fu">++</span> s</code></pre>
+<div class="section slide level1" id="what-if-we-want-to-modify-the-lines">
+<h1>What if we want to modify the lines?</h1>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">indent s <span class="fu">=</span> <span class="st">&quot;    &quot;</span> <span class="fu">++</span> s</code></pre>
 <p>and then, obviously:</p>
-<pre class="sourceCode"><code class="sourceCode haskell">indentLines <span class="fu">=</span> byLines indent</code></pre>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">indentLines <span class="fu">=</span> byLines indent</code></pre>
 </div>
-<div class="slide">
-<h1 id="boom">BOOM!</h1>
-<pre class="sourceCode"><code class="sourceCode haskell">indentLines <span class="fu">=</span> byLines indent</code></pre>
+<div class="section slide level1" id="boom">
+<h1>BOOM!</h1>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">indentLines <span class="fu">=</span> byLines indent</code></pre>
 <p>doesn't compile:</p>
-<pre><code>    Couldn't match expected type `[Char]' with actual type `Char'
+<pre><code>    Couldn&#39;t match expected type `[Char]&#39; with actual type `Char&#39;
     Expected type: [String] -&gt; [String]
       Actual type: String -&gt; String
-    In the first argument of `byLines', namely `indent'
-    In the expression: byLines indent
-</code></pre>
+    In the first argument of `byLines&#39;, namely `indent&#39;
+    In the expression: byLines indent</code></pre>
 </div>
-<div class="slide">
-<h1 id="how-did-it-work-before">How did it work before?</h1>
+<div class="section slide level1" id="how-did-it-work-before">
+<h1>How did it work before?</h1>
 <p>In this code</p>
-<pre class="sourceCode"><code class="sourceCode haskell">sortLines'     <span class="fu">=</span> byLines <span class="fu">sort</span><br />reverseLines'  <span class="fu">=</span> byLines <span class="fu">reverse</span><br />firstTwoLines' <span class="fu">=</span> byLines (<span class="fu">take</span> <span class="dv">2</span>)</code></pre>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">sortLines&#39;     <span class="fu">=</span> byLines <span class="fu">sort</span>
+reverseLines&#39;  <span class="fu">=</span> byLines <span class="fu">reverse</span>
+firstTwoLines&#39; <span class="fu">=</span> byLines (<span class="fu">take</span> <span class="dv">2</span>)</code></pre>
 <p>We apply <code>byLines</code> to arguments with these types</p>
-<pre class="sourceCode"><code class="sourceCode haskell"><span class="fu">sort</span><span class="ot">     </span><span class="ot">::</span> [<span class="dt">String</span>] <span class="ot">-&gt;</span> [<span class="dt">String</span>]<br /><span class="fu">reverse</span><span class="ot">  </span><span class="ot">::</span> [<span class="dt">String</span>] <span class="ot">-&gt;</span> [<span class="dt">String</span>]<br />(<span class="fu">take</span> <span class="dv">2</span>)<span class="ot"> </span><span class="ot">::</span> [<span class="dt">String</span>] <span class="ot">-&gt;</span> [<span class="dt">String</span>]</code></pre>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="fu">sort</span><span class="ot">     ::</span> [<span class="dt">String</span>] <span class="ot">-&gt;</span> [<span class="dt">String</span>]
+<span class="fu">reverse</span><span class="ot">  ::</span> [<span class="dt">String</span>] <span class="ot">-&gt;</span> [<span class="dt">String</span>]
+(<span class="fu">take</span> <span class="dv">2</span>)<span class="ot"> ::</span> [<span class="dt">String</span>] <span class="ot">-&gt;</span> [<span class="dt">String</span>]</code></pre>
 <p><em>(Don't look too hard at that last one.)</em></p>
 </div>
-<div class="slide">
-<h1 id="what-do-we-have-now">What do we have now?</h1>
+<div class="section slide level1" id="what-do-we-have-now">
+<h1>What do we have now?</h1>
 <p>Type type of <code>indent</code> is</p>
-<pre class="sourceCode"><code class="sourceCode haskell"><span class="ot">indent </span><span class="ot">::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span><br />indent s <span class="fu">=</span> <span class="st">&quot;    &quot;</span> <span class="fu">++</span> s</code></pre>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">indent ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
+indent s <span class="fu">=</span> <span class="st">&quot;    &quot;</span> <span class="fu">++</span> s</code></pre>
 <p>and that isn't compatible with <code>byLines</code></p>
-<pre class="sourceCode"><code class="sourceCode haskell">indentLines <span class="fu">=</span> byLines indent</code></pre>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">indentLines <span class="fu">=</span> byLines indent</code></pre>
 </div>
-<div class="slide">
-<h1 id="map-to-the-rescue"><code>map</code> to the rescue:</h1>
-<pre class="sourceCode"><code class="sourceCode haskell"><span class="fu">map</span><span class="ot"> </span><span class="ot">::</span> (a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> [b]</code></pre>
+<div class="section slide level1" id="map-to-the-rescue">
+<h1><code>map</code> to the rescue:</h1>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="fu">map</span><span class="ot"> ::</span> (a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> [b]</code></pre>
 <p>as in:</p>
-<pre class="sourceCode"><code class="sourceCode haskell"><span class="fu">map</span> <span class="fu">reverse</span> [<span class="st">&quot;red&quot;</span>, <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;blue&quot;</span>]<br />[<span class="st">&quot;der&quot;</span>,<span class="st">&quot;wolley&quot;</span>,<span class="st">&quot;eulb&quot;</span>]<br /><br /><span class="fu">map</span> <span class="fu">sort</span> [<span class="st">&quot;red&quot;</span>, <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;blue&quot;</span>]<br />[<span class="st">&quot;der&quot;</span>,<span class="st">&quot;ellowy&quot;</span>,<span class="st">&quot;belu&quot;</span>]</code></pre>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="fu">map</span> <span class="fu">reverse</span> [<span class="st">&quot;red&quot;</span>, <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;blue&quot;</span>]
+[<span class="st">&quot;der&quot;</span>,<span class="st">&quot;wolley&quot;</span>,<span class="st">&quot;eulb&quot;</span>]
+
+<span class="fu">map</span> <span class="fu">sort</span> [<span class="st">&quot;red&quot;</span>, <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;blue&quot;</span>]
+[<span class="st">&quot;der&quot;</span>,<span class="st">&quot;ellowy&quot;</span>,<span class="st">&quot;belu&quot;</span>]</code></pre>
 <p>compare:</p>
-<pre class="sourceCode"><code class="sourceCode haskell"><span class="fu">reverse</span> [<span class="st">&quot;red&quot;</span>, <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;blue&quot;</span>]<br />[<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;yellow&quot;</span>,<span class="st">&quot;red&quot;</span>]<br /><br /><span class="fu">sort</span> [<span class="st">&quot;red&quot;</span>, <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;blue&quot;</span>]<br />[<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;red&quot;</span>,<span class="st">&quot;yellow&quot;</span>]</code></pre>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="fu">reverse</span> [<span class="st">&quot;red&quot;</span>, <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;blue&quot;</span>]
+[<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;yellow&quot;</span>,<span class="st">&quot;red&quot;</span>]
+
+<span class="fu">sort</span> [<span class="st">&quot;red&quot;</span>, <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;blue&quot;</span>]
+[<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;red&quot;</span>,<span class="st">&quot;yellow&quot;</span>]</code></pre>
 </div>
-<div class="slide">
-<h1 id="so-then">So then:</h1>
-<pre class="sourceCode"><code class="sourceCode haskell"><span class="ot">indentEachLine </span><span class="ot">::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span><br />indentEachLine <span class="fu">=</span> byLines (<span class="fu">map</span> indent)<br /><br /><span class="ot">eachLine </span><span class="ot">::</span> (<span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span>) <span class="ot">-&gt;</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span><br />eachLine f <span class="fu">=</span> <span class="fu">unlines</span> <span class="fu">.</span> <span class="fu">map</span> f <span class="fu">.</span> <span class="fu">lines</span><br /><br /><span class="ot">indentEachLine' </span><span class="ot">::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span><br />indentEachLine' <span class="fu">=</span> eachLine indent</code></pre>
+<div class="section slide level1" id="so-then">
+<h1>So then:</h1>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">indentEachLine ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
+indentEachLine <span class="fu">=</span> byLines (<span class="fu">map</span> indent)
+
+<span class="ot">eachLine ::</span> (<span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span>) <span class="ot">-&gt;</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
+eachLine f <span class="fu">=</span> <span class="fu">unlines</span> <span class="fu">.</span> <span class="fu">map</span> f <span class="fu">.</span> <span class="fu">lines</span>
+
+<span class="ot">indentEachLine&#39; ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
+indentEachLine&#39; <span class="fu">=</span> eachLine indent</code></pre>
 <p>and we get:</p>
 <pre><code>    occasional clouds
     one gets a rest
-    from moon-viewing
-</code></pre>
+    from moon-viewing</code></pre>
 </div>
-<div class="slide">
-<h1 id="but-wait-wheres-the-2nd-argument">But wait, where's the 2nd argument?</h1>
+<div class="section slide level1" id="but-wait-wheres-the-2nd-argument">
+<h1>But wait, where's the 2nd argument?</h1>
 <p>How can we write:</p>
-<pre class="sourceCode"><code class="sourceCode haskell">eachLine f <span class="fu">=</span> <span class="fu">unlines</span> <span class="fu">.</span> <span class="fu">map</span> f <span class="fu">.</span> <span class="fu">lines</span></code></pre>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">eachLine f <span class="fu">=</span> <span class="fu">unlines</span> <span class="fu">.</span> <span class="fu">map</span> f <span class="fu">.</span> <span class="fu">lines</span></code></pre>
 <p>Think of <code>map</code>'s type this way:</p>
-<pre class="sourceCode"><code class="sourceCode haskell"><span class="fu">map</span><span class="ot"> </span><span class="ot">::</span> (a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> ([a] <span class="ot">-&gt;</span> [b])</code></pre>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="fu">map</span><span class="ot"> ::</span> (a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> ([a] <span class="ot">-&gt;</span> [b])</code></pre>
 <p>It takes a function and transforms (lifts) it into a function over lists</p>
 </div>
-<div class="slide">
-<h1 id="lets-yell">Let's YELL!!!</h1>
-<pre class="sourceCode"><code class="sourceCode haskell"><span class="ot">yell </span><span class="ot">::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span><br />yell s <span class="fu">=</span> <span class="fu">map</span> <span class="fu">toUpper</span> s <span class="fu">++</span> <span class="st">&quot;!!!&quot;</span><br /><br /><span class="ot">yellEachLine </span><span class="ot">::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span><br />yellEachLine <span class="fu">=</span> eachLine yell</code></pre>
+<div class="section slide level1" id="lets-yell">
+<h1>Let's YELL!!!</h1>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">yell ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
+yell s <span class="fu">=</span> <span class="fu">map</span> <span class="fu">toUpper</span> s <span class="fu">++</span> <span class="st">&quot;!!!&quot;</span>
+
+<span class="ot">yellEachLine ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
+yellEachLine <span class="fu">=</span> eachLine yell</code></pre>
 <p>gives</p>
 <pre><code>OCCASIONAL CLOUDS!!!
 ONE GETS A REST!!!
-FROM MOON-VIEWING!!!
-</code></pre>
+FROM MOON-VIEWING!!!</code></pre>
 </div>
-<div class="slide">
-<h1 id="what-if-we-wanted-it-by-words">What if we wanted it by words?</h1>
-<pre class="sourceCode"><code class="sourceCode haskell"><span class="ot">eachWord </span><span class="ot">::</span> (<span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span>) <span class="ot">-&gt;</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span><br />eachWord f <span class="fu">=</span> <span class="fu">unwords</span> <span class="fu">.</span> <span class="fu">map</span> f <span class="fu">.</span> <span class="fu">words</span><br /><br /><span class="ot">yellEachWord </span><span class="ot">::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span><br />yellEachWord <span class="fu">=</span> eachWord yell</code></pre>
+<div class="section slide level1" id="what-if-we-wanted-it-by-words">
+<h1>What if we wanted it by words?</h1>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">eachWord ::</span> (<span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span>) <span class="ot">-&gt;</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
+eachWord f <span class="fu">=</span> <span class="fu">unwords</span> <span class="fu">.</span> <span class="fu">map</span> f <span class="fu">.</span> <span class="fu">words</span>
+
+<span class="ot">yellEachWord ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
+yellEachWord <span class="fu">=</span> eachWord yell</code></pre>
 <p><em>d'oh!</em></p>
-<pre><code>OCCASIONAL!!! CLOUDS!!! ONE!!! GETS!!! A!!! REST!!! FROM!!! MOON-VIEWING!!!
-</code></pre>
+<pre><code>OCCASIONAL!!! CLOUDS!!! ONE!!! GETS!!! A!!! REST!!! FROM!!! MOON-VIEWING!!!</code></pre>
 </div>
-<div class="slide">
-<h1 id="we-want-by-words-by-lines...">We want by words, by lines...</h1>
-<pre class="sourceCode"><code class="sourceCode haskell"><span class="ot">eachWordOnEachLine </span><span class="ot">::</span> (<span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span>) <span class="ot">-&gt;</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span><br />eachWordOnEachLine f <span class="fu">=</span> eachLine (eachWord f)<br /><br /><span class="ot">yellEachWordOnEachLine </span><span class="ot">::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span><br />yellEachWordOnEachLine <span class="fu">=</span> eachWord' yell</code></pre>
+<div class="section slide level1" id="we-want-by-words-by-lines...">
+<h1>We want by words, by lines...</h1>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">eachWordOnEachLine ::</span> (<span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span>) <span class="ot">-&gt;</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
+eachWordOnEachLine f <span class="fu">=</span> eachLine (eachWord f)
+
+<span class="ot">yellEachWordOnEachLine ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
+yellEachWordOnEachLine <span class="fu">=</span> eachWordOnEachLine yell</code></pre>
 <p>Ah, got it:</p>
 <pre><code>OCCASIONAL!!! CLOUDS!!!
 ONE!!! GETS!!! A!!! REST!!!
-FROM!!! MOON-VIEWING!!!
-</code></pre>
+FROM!!! MOON-VIEWING!!!</code></pre>
 </div>
-<div class="slide">
-<h1 id="what-bus-hit-us">What bus hit us?</h1>
+<div class="section slide level1" id="what-bus-hit-us">
+<h1>What bus hit us?</h1>
 <p>Higher Order Functions</p>
 </div>
-<div class="slide">
+<div class="section slide level1" id="section">
+<h1></h1>
 <p>(Pause to catch breath)</p>
 </div>
-<div class="slide">
+<div class="section slide level1" id="section-1">
+<h1></h1>
 <p><em>Onward!</em></p>
 </div>
-<div class="slide">
-<h1 id="structured-data">Structured data</h1>
+<div class="section slide level1" id="structured-data">
+<h1>Structured data</h1>
 <p>By which I mean lists, of course...</p>
-<pre class="sourceCode"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">List</span> &#945; <span class="fu">=</span> <span class="dt">EndOfList</span><br />            <span class="fu">|</span> <span class="dt">Link</span> &#945; (<span class="dt">List</span> &#945;)</code></pre>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">List</span> α <span class="fu">=</span> <span class="dt">EndOfList</span>
+            <span class="fu">|</span> <span class="dt">Link</span> α (<span class="dt">List</span> α)</code></pre>
 <p>we can make some values of this type:</p>
-<pre class="sourceCode"><code class="sourceCode haskell">empty <span class="fu">=</span> <span class="dt">EndOfList</span><br />oneWord <span class="fu">=</span> <span class="dt">Link</span> <span class="st">&quot;apple&quot;</span> <span class="dt">EndOfList</span><br />twoWords <span class="fu">=</span> <span class="dt">Link</span> <span class="st">&quot;banana&quot;</span> (<span class="dt">Link</span> <span class="st">&quot;cantaloupe&quot;</span> <span class="dt">EndOfList</span>)</code></pre>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">empty <span class="fu">=</span> <span class="dt">EndOfList</span>
+oneWord <span class="fu">=</span> <span class="dt">Link</span> <span class="st">&quot;apple&quot;</span> <span class="dt">EndOfList</span>
+twoWords <span class="fu">=</span> <span class="dt">Link</span> <span class="st">&quot;banana&quot;</span> (<span class="dt">Link</span> <span class="st">&quot;cantaloupe&quot;</span> <span class="dt">EndOfList</span>)</code></pre>
 </div>
-<div class="slide">
-<h1 id="pop-quiz">Pop quiz</h1>
+<div class="section slide level1" id="pop-quiz">
+<h1>Pop quiz</h1>
 <p>Given these..</p>
-<pre class="sourceCode"><code class="sourceCode haskell">empty <span class="fu">=</span> <span class="dt">EndOfList</span><br />oneWord <span class="fu">=</span> <span class="dt">Link</span> <span class="st">&quot;apple&quot;</span> <span class="dt">EndOfList</span><br />twoWords <span class="fu">=</span> <span class="dt">Link</span> <span class="st">&quot;banana&quot;</span> (<span class="dt">Link</span> <span class="st">&quot;cantaloupe&quot;</span> <span class="dt">EndOfList</span>)</code></pre>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">empty <span class="fu">=</span> <span class="dt">EndOfList</span>
+oneWord <span class="fu">=</span> <span class="dt">Link</span> <span class="st">&quot;apple&quot;</span> <span class="dt">EndOfList</span>
+twoWords <span class="fu">=</span> <span class="dt">Link</span> <span class="st">&quot;banana&quot;</span> (<span class="dt">Link</span> <span class="st">&quot;cantaloupe&quot;</span> <span class="dt">EndOfList</span>)</code></pre>
 <p>What are these?</p>
-<pre class="sourceCode"><code class="sourceCode haskell">mystery1 <span class="fu">=</span> <span class="dt">Link</span> <span class="st">&quot;pear&quot;</span> empty<br />mystery2 <span class="fu">=</span> <span class="dt">Link</span> <span class="st">&quot;peach&quot;</span> oneWord<br />mystery3 <span class="fu">=</span> <span class="dt">Link</span> <span class="st">&quot;pineapple&quot;</span> mystery3<br />mystery4 <span class="fu">=</span> <span class="dt">Link</span> <span class="dv">42</span> (<span class="dt">Link</span> <span class="st">&quot;apple&quot;</span> <span class="dt">EndOfList</span>)</code></pre>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">mystery1 <span class="fu">=</span> <span class="dt">Link</span> <span class="st">&quot;pear&quot;</span> empty
+mystery2 <span class="fu">=</span> <span class="dt">Link</span> <span class="st">&quot;peach&quot;</span> oneWord
+mystery3 <span class="fu">=</span> <span class="dt">Link</span> <span class="st">&quot;pineapple&quot;</span> mystery3
+mystery4 <span class="fu">=</span> <span class="dt">Link</span> <span class="dv">42</span> (<span class="dt">Link</span> <span class="st">&quot;apple&quot;</span> <span class="dt">EndOfList</span>)</code></pre>
 </div>
-<div class="slide">
-<h1 id="some-functions-on-list">Some functions on List</h1>
-<pre class="sourceCode"><code class="sourceCode haskell"><span class="ot">dropOne </span><span class="ot">::</span> <span class="dt">List</span> &#945; <span class="ot">-&gt;</span> <span class="dt">List</span> &#945;<br />dropOne (<span class="dt">Link</span> first rest) <span class="fu">=</span> rest<br />dropOne <span class="dt">EndOfList</span> <span class="fu">=</span> <span class="dt">EndOfList</span><br /><br /><span class="ot">justOne </span><span class="ot">::</span> <span class="dt">List</span> &#945; <span class="ot">-&gt;</span> <span class="dt">List</span> &#945;<br />justOne (<span class="dt">Link</span> a _) <span class="fu">=</span> <span class="dt">Link</span> a <span class="dt">EndOfList</span><br />justOne <span class="dt">EndOfList</span> <span class="fu">=</span> <span class="dt">EndOfList</span></code></pre>
+<div class="section slide level1" id="some-functions-on-list">
+<h1>Some functions on List</h1>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">dropOne ::</span> <span class="dt">List</span> α <span class="ot">-&gt;</span> <span class="dt">List</span> α
+dropOne (<span class="dt">Link</span> first rest) <span class="fu">=</span> rest
+dropOne <span class="dt">EndOfList</span> <span class="fu">=</span> <span class="dt">EndOfList</span>
+
+<span class="ot">justOne ::</span> <span class="dt">List</span> α <span class="ot">-&gt;</span> <span class="dt">List</span> α
+justOne (<span class="dt">Link</span> a _) <span class="fu">=</span> <span class="dt">Link</span> a <span class="dt">EndOfList</span>
+justOne <span class="dt">EndOfList</span> <span class="fu">=</span> <span class="dt">EndOfList</span></code></pre>
 </div>
-<div class="slide">
-<h1 id="actually-we-dont-type-so-much">Actually, we don't type so much</h1>
-<pre class="sourceCode"><code class="sourceCode haskell"><span class="kw">data</span> [] a <span class="fu">=</span> [] <span class="fu">|</span> a <span class="fu">:</span> [a] <span class="co">-- this is in the standard library</span><br /><span class="kw">infixr</span> <span class="dv">5</span> <span class="fu">:</span><br /><br />empty <span class="fu">=</span> []<br />oneWord <span class="fu">=</span> <span class="st">&quot;apple&quot;</span> <span class="fu">:</span> []<br />twoWords <span class="fu">=</span> <span class="st">&quot;banana&quot;</span> <span class="fu">:</span> <span class="st">&quot;cantaloupe&quot;</span> <span class="fu">:</span> []<br /><br />mystery1 <span class="fu">=</span> <span class="st">&quot;pear&quot;</span> <span class="fu">:</span> empty<br />mystery2 <span class="fu">=</span> <span class="st">&quot;peach&quot;</span> <span class="fu">:</span> oneWord<br />mystery3 <span class="fu">=</span> <span class="st">&quot;pineapple&quot;</span> <span class="fu">:</span> mystery3<br />mystery4 <span class="fu">=</span> <span class="dv">42</span> <span class="fu">:</span> <span class="st">&quot;apple&quot;</span> <span class="fu">:</span> []<br /><br /><span class="ot">dropOne </span><span class="ot">::</span> [a] <span class="ot">-&gt;</span> [a]<br />dropOne (first<span class="fu">:</span>rest) <span class="fu">=</span> rest<br />dropOne [] <span class="fu">=</span> []<br /><br /><span class="ot">justOne </span><span class="ot">::</span> [a] <span class="ot">-&gt;</span> [a]<br />justOne (a<span class="fu">:</span>_) <span class="fu">=</span> a<span class="fu">:</span>[]<br />justOne [] <span class="fu">=</span> []</code></pre>
+<div class="section slide level1" id="actually-we-dont-type-so-much">
+<h1>Actually, we don't type so much</h1>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> [] a <span class="fu">=</span> [] <span class="fu">|</span> a <span class="fu">:</span> [a] <span class="co">-- this is in the standard library</span>
+<span class="kw">infixr</span> <span class="dv">5</span> <span class="fu">:</span>
+
+empty <span class="fu">=</span> []
+oneWord <span class="fu">=</span> <span class="st">&quot;apple&quot;</span> <span class="fu">:</span> []
+twoWords <span class="fu">=</span> <span class="st">&quot;banana&quot;</span> <span class="fu">:</span> <span class="st">&quot;cantaloupe&quot;</span> <span class="fu">:</span> []
+
+mystery1 <span class="fu">=</span> <span class="st">&quot;pear&quot;</span> <span class="fu">:</span> empty
+mystery2 <span class="fu">=</span> <span class="st">&quot;peach&quot;</span> <span class="fu">:</span> oneWord
+mystery3 <span class="fu">=</span> <span class="st">&quot;pineapple&quot;</span> <span class="fu">:</span> mystery3
+mystery4 <span class="fu">=</span> <span class="dv">42</span> <span class="fu">:</span> <span class="st">&quot;apple&quot;</span> <span class="fu">:</span> []
+
+<span class="ot">dropOne ::</span> [a] <span class="ot">-&gt;</span> [a]
+dropOne (first<span class="fu">:</span>rest) <span class="fu">=</span> rest
+dropOne [] <span class="fu">=</span> []
+
+<span class="ot">justOne ::</span> [a] <span class="ot">-&gt;</span> [a]
+justOne (a<span class="fu">:</span>_) <span class="fu">=</span> a<span class="fu">:</span>[]
+justOne [] <span class="fu">=</span> []</code></pre>
 </div>
-<div class="slide">
-<h1 id="actually-not-even-that-much">Actually, not even that much</h1>
-<pre class="sourceCode"><code class="sourceCode haskell"><span class="kw">data</span> [] a <span class="fu">=</span> [] <span class="fu">|</span> a <span class="fu">:</span> [a] <span class="co">-- this is in the standard library</span><br /><span class="kw">infixr</span> <span class="dv">5</span> <span class="fu">:</span><br /><br />empty <span class="fu">=</span> []<br />oneWord <span class="fu">=</span> [<span class="st">&quot;apple&quot;</span>]                 <span class="co">-- syntatic sugar</span><br />twoWords <span class="fu">=</span> [<span class="st">&quot;banana&quot;</span>, <span class="st">&quot;cantaloupe&quot;</span>] <span class="co">-- two teaspoons full</span><br /><br />mystery1 <span class="fu">=</span> <span class="st">&quot;pear&quot;</span> <span class="fu">:</span> empty<br />mystery2 <span class="fu">=</span> <span class="st">&quot;peach&quot;</span> <span class="fu">:</span> oneWord<br />mystery3 <span class="fu">=</span> <span class="st">&quot;pineapple&quot;</span> <span class="fu">:</span> mystery3<br />mystery4 <span class="fu">=</span> [<span class="dv">42</span>, <span class="st">&quot;apple&quot;</span>] <span class="co">-- sweet, but still won't compile</span><br /><br /><span class="ot">dropOne </span><span class="ot">::</span> [a] <span class="ot">-&gt;</span> [a]<br />dropOne (first<span class="fu">:</span>rest) <span class="fu">=</span> rest<br />dropOne [] <span class="fu">=</span> []<br /><br /><span class="ot">justOne </span><span class="ot">::</span> [a] <span class="ot">-&gt;</span> [a] <span class="co">-- don't confuse these &quot;[a]&quot;s</span><br />justOne (a<span class="fu">:</span>_) <span class="fu">=</span> [a]   <span class="co">-- with this &quot;[a]&quot;</span><br />justOne [] <span class="fu">=</span> []</code></pre>
+<div class="section slide level1" id="actually-not-even-that-much">
+<h1>Actually, not even that much</h1>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> [] a <span class="fu">=</span> [] <span class="fu">|</span> a <span class="fu">:</span> [a] <span class="co">-- this is in the standard library</span>
+<span class="kw">infixr</span> <span class="dv">5</span> <span class="fu">:</span>
+
+empty <span class="fu">=</span> []
+oneWord <span class="fu">=</span> [<span class="st">&quot;apple&quot;</span>]                 <span class="co">-- syntatic sugar</span>
+twoWords <span class="fu">=</span> [<span class="st">&quot;banana&quot;</span>, <span class="st">&quot;cantaloupe&quot;</span>] <span class="co">-- two teaspoons full</span>
+
+mystery1 <span class="fu">=</span> <span class="st">&quot;pear&quot;</span> <span class="fu">:</span> empty
+mystery2 <span class="fu">=</span> <span class="st">&quot;peach&quot;</span> <span class="fu">:</span> oneWord
+mystery3 <span class="fu">=</span> <span class="st">&quot;pineapple&quot;</span> <span class="fu">:</span> mystery3
+mystery4 <span class="fu">=</span> [<span class="dv">42</span>, <span class="st">&quot;apple&quot;</span>] <span class="co">-- sweet, but still won&#39;t compile</span>
+
+<span class="ot">dropOne ::</span> [a] <span class="ot">-&gt;</span> [a]
+dropOne (first<span class="fu">:</span>rest) <span class="fu">=</span> rest
+dropOne [] <span class="fu">=</span> []
+
+<span class="ot">justOne ::</span> [a] <span class="ot">-&gt;</span> [a] <span class="co">-- don&#39;t confuse these &quot;[a]&quot;s</span>
+justOne (a<span class="fu">:</span>_) <span class="fu">=</span> [a]   <span class="co">-- with this &quot;[a]&quot;</span>
+justOne [] <span class="fu">=</span> []</code></pre>
 </div>
-<div class="slide">
-<h1 id="two-more-standard-things">Two more standard things:</h1>
-<pre class="sourceCode"><code class="sourceCode haskell"><span class="kw">type</span> <span class="dt">String</span> <span class="fu">=</span> [<span class="dt">Char</span>]</code></pre>
-<pre class="sourceCode"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Maybe</span> a <span class="fu">=</span> <span class="kw">Nothing</span> <span class="fu">|</span> <span class="kw">Just</span> a</code></pre>
+<div class="section slide level1" id="two-more-standard-things">
+<h1>Two more standard things:</h1>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">type</span> <span class="dt">String</span> <span class="fu">=</span> [<span class="dt">Char</span>]</code></pre>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Maybe</span> a <span class="fu">=</span> <span class="kw">Nothing</span> <span class="fu">|</span> <span class="kw">Just</span> a</code></pre>
 </div>
-<div class="slide">
-<h1 id="use-it-like-this">Use it like this</h1>
-<pre class="sourceCode"><code class="sourceCode haskell"><span class="ot">pickMessage </span><span class="ot">::</span> <span class="dt">Maybe</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">String</span><br />pickMessage (<span class="kw">Just</span> n) <span class="fu">=</span> <span class="st">&quot;Pick a number, like &quot;</span> <span class="fu">++</span> <span class="fu">show</span> n <span class="fu">++</span> <span class="st">&quot;.&quot;</span><br />pickMessage <span class="kw">Nothing</span> <span class="fu">=</span> <span class="st">&quot;Pick any number you like.&quot;</span></code></pre>
+<div class="section slide level1" id="use-it-like-this">
+<h1>Use it like this</h1>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">pickMessage ::</span> <span class="dt">Maybe</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
+pickMessage (<span class="kw">Just</span> n) <span class="fu">=</span> <span class="st">&quot;Pick a number, like &quot;</span> <span class="fu">++</span> <span class="fu">show</span> n <span class="fu">++</span> <span class="st">&quot;.&quot;</span>
+pickMessage <span class="kw">Nothing</span> <span class="fu">=</span> <span class="st">&quot;Pick any number you like.&quot;</span></code></pre>
 </div>
-<div class="slide">
-<h1 id="the-awkward-and-the-bad">The awkward and the bad</h1>
+<div class="section slide level1" id="the-awkward-and-the-bad">
+<h1>The awkward and the bad</h1>
 <p>This is awkward:</p>
-<pre class="sourceCode"><code class="sourceCode haskell"><span class="ot">justOne </span><span class="ot">::</span> [a] <span class="ot">-&gt;</span> [a]<br />justOne (a<span class="fu">:</span>_) <span class="fu">=</span> [a]<br />justOne [] <span class="fu">=</span> []</code></pre>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">justOne ::</span> [a] <span class="ot">-&gt;</span> [a]
+justOne (a<span class="fu">:</span>_) <span class="fu">=</span> [a]
+justOne [] <span class="fu">=</span> []</code></pre>
 <p>This is bad:</p>
-<pre class="sourceCode"><code class="sourceCode haskell"><span class="ot">firstOne </span><span class="ot">::</span> [a] <span class="ot">-&gt;</span> a<br />firstOne (a<span class="fu">:</span>_) <span class="fu">=</span> a<br />firstOne [] <span class="fu">=</span> <span class="fu">error</span> <span class="st">&quot;O Noes!&quot;</span></code></pre>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">firstOne ::</span> [a] <span class="ot">-&gt;</span> a
+firstOne (a<span class="fu">:</span>_) <span class="fu">=</span> a
+firstOne [] <span class="fu">=</span> <span class="fu">error</span> <span class="st">&quot;O Noes!&quot;</span></code></pre>
 </div>
-<div class="slide">
-<h1 id="maybe-theres-a-better-way"><code>Maybe</code>, there's a better way</h1>
-<pre class="sourceCode"><code class="sourceCode haskell"><span class="ot">firstOne' </span><span class="ot">::</span> [a] <span class="ot">-&gt;</span> <span class="dt">Maybe</span> a<br />firstOne' (a<span class="fu">:</span>_) <span class="fu">=</span> <span class="kw">Just</span> a<br />firstOne' [] <span class="fu">=</span> <span class="kw">Nothing</span></code></pre>
+<div class="section slide level1" id="maybe-theres-a-better-way">
+<h1><code>Maybe</code>, there's a better way</h1>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">firstOne&#39; ::</span> [a] <span class="ot">-&gt;</span> <span class="dt">Maybe</span> a
+firstOne&#39; (a<span class="fu">:</span>_) <span class="fu">=</span> <span class="kw">Just</span> a
+firstOne&#39; [] <span class="fu">=</span> <span class="kw">Nothing</span></code></pre>
 </div>
-<div class="slide">
-<h1 id="now-lets-write-some-real-code">Now, let's write some real code</h1>
+<div class="section slide level1" id="now-lets-write-some-real-code">
+<h1>Now, let's write some real code</h1>
 <p>Find the first character after a star:</p>
-<pre class="sourceCode"><code class="sourceCode haskell"><span class="ot">findAfterStar </span><span class="ot">::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">Char</span><br />findAfterStar (c<span class="fu">:</span>d<span class="fu">:</span>r) <span class="fu">=</span><br />  <span class="kw">if</span> c <span class="fu">==</span> <span class="ch">'*'</span> <span class="kw">then</span> <span class="kw">Just</span> d<br />              <span class="kw">else</span> findAfterStar (d<span class="fu">:</span>r)<br />findAfterStar _ <span class="fu">=</span> <span class="kw">Nothing</span></code></pre>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">findAfterStar ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">Char</span>
+findAfterStar (c<span class="fu">:</span>d<span class="fu">:</span>r) <span class="fu">=</span>
+  <span class="kw">if</span> c <span class="fu">==</span> <span class="ch">&#39;*&#39;</span> <span class="kw">then</span> <span class="kw">Just</span> d
+              <span class="kw">else</span> findAfterStar (d<span class="fu">:</span>r)
+findAfterStar _ <span class="fu">=</span> <span class="kw">Nothing</span></code></pre>
 </div>
-<div class="slide">
-<h1 id="make-it-a-little-bit-more-generic">Make it a little bit more generic</h1>
+<div class="section slide level1" id="make-it-a-little-bit-more-generic">
+<h1>Make it a little bit more generic</h1>
 <p>Find the first character after some other character:</p>
-<pre class="sourceCode"><code class="sourceCode haskell"><span class="ot">findAfterChar </span><span class="ot">::</span> <span class="dt">Char</span> <span class="ot">-&gt;</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">Char</span><br />findAfterChar m (c<span class="fu">:</span>d<span class="fu">:</span>r) <span class="fu">=</span><br />  <span class="kw">if</span> c <span class="fu">==</span> m <span class="kw">then</span> <span class="kw">Just</span> d<br />            <span class="kw">else</span> findAfterChar m (d<span class="fu">:</span>r)<br />findAfterChar _ _ <span class="fu">=</span> <span class="kw">Nothing</span></code></pre>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">findAfterChar ::</span> <span class="dt">Char</span> <span class="ot">-&gt;</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">Char</span>
+findAfterChar m (c<span class="fu">:</span>d<span class="fu">:</span>r) <span class="fu">=</span>
+  <span class="kw">if</span> c <span class="fu">==</span> m <span class="kw">then</span> <span class="kw">Just</span> d
+            <span class="kw">else</span> findAfterChar m (d<span class="fu">:</span>r)
+findAfterChar _ _ <span class="fu">=</span> <span class="kw">Nothing</span></code></pre>
 </div>
-<div class="slide">
-<h1 id="more-generic-still">More generic still</h1>
+<div class="section slide level1" id="more-generic-still">
+<h1>More generic still</h1>
 <p>Find the first thing after some other thing:</p>
-<pre class="sourceCode"><code class="sourceCode haskell"><span class="ot">findAfterElem </span><span class="ot">::</span> <span class="kw">Eq</span> a <span class="ot">=&gt;</span> a <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> <span class="dt">Maybe</span> a<br />findAfterElem m (c<span class="fu">:</span>d<span class="fu">:</span>r) <span class="fu">=</span><br />  <span class="kw">if</span> c <span class="fu">==</span> m <span class="kw">then</span> <span class="kw">Just</span> d<br />            <span class="kw">else</span> findAfterElem m (d<span class="fu">:</span>r)<br />findAfterElem _ _ <span class="fu">=</span> <span class="kw">Nothing</span></code></pre>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">findAfterElem ::</span> <span class="kw">Eq</span> a <span class="ot">=&gt;</span> a <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> <span class="dt">Maybe</span> a
+findAfterElem m (c<span class="fu">:</span>d<span class="fu">:</span>r) <span class="fu">=</span>
+  <span class="kw">if</span> c <span class="fu">==</span> m <span class="kw">then</span> <span class="kw">Just</span> d
+            <span class="kw">else</span> findAfterElem m (d<span class="fu">:</span>r)
+findAfterElem _ _ <span class="fu">=</span> <span class="kw">Nothing</span></code></pre>
 </div>
-<div class="slide">
+<div class="section slide level1" id="section-2">
+<h1></h1>
 <p>(Pause to catch breath)</p>
 </div>
-<div class="slide">
+<div class="section slide level1" id="section-3">
+<h1></h1>
 <p><em>Onward!</em></p>
 </div>
-<div class="slide">
-<h1 id="the-type-that-blew-my-mind">The type that blew my mind</h1>
-<pre class="sourceCode"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Maybe</span> a <span class="fu">=</span> <span class="kw">Nothing</span> <span class="fu">|</span> <span class="kw">Just</span> a</code></pre>
+<div class="section slide level1" id="the-type-that-blew-my-mind">
+<h1>The type that blew my mind</h1>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Maybe</span> a <span class="fu">=</span> <span class="kw">Nothing</span> <span class="fu">|</span> <span class="kw">Just</span> a</code></pre>
 </div>
-<div class="slide">
-<h1 id="maybe-quite-useful"><code>Maybe</code> quite useful:</h1>
-<pre class="sourceCode"><code class="sourceCode haskell"><span class="ot">elemIndex </span><span class="ot">::</span> a <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">Int</span><br /><br /><span class="fu">lookup</span><span class="ot"> </span><span class="ot">::</span> k <span class="ot">-&gt;</span> <span class="dt">Map</span> k a <span class="ot">-&gt;</span> <span class="dt">Maybe</span> a<br /><br /><span class="ot">stripPrefix </span><span class="ot">::</span> <span class="dt">Text</span> <span class="ot">-&gt;</span> <span class="dt">Text</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">Text</span><br /><br /><span class="ot">port </span><span class="ot">::</span> <span class="dt">URIAuthority</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">Int</span></code></pre>
+<div class="section slide level1" id="maybe-quite-useful">
+<h1><code>Maybe</code> quite useful:</h1>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">elemIndex ::</span> a <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">Int</span>
+
+<span class="fu">lookup</span><span class="ot"> ::</span> k <span class="ot">-&gt;</span> <span class="dt">Map</span> k a <span class="ot">-&gt;</span> <span class="dt">Maybe</span> a
+
+<span class="ot">stripPrefix ::</span> <span class="dt">Text</span> <span class="ot">-&gt;</span> <span class="dt">Text</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">Text</span>
+
+<span class="ot">port ::</span> <span class="dt">URIAuthority</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">Int</span></code></pre>
 </div>
-<div class="slide">
-<h1 id="power-lifting-fmap">Power lifting: <code>fmap</code></h1>
-<pre class="sourceCode"><code class="sourceCode haskell"><span class="ot">addAWeek </span><span class="ot">::</span> <span class="dt">Day</span> <span class="ot">-&gt;</span> <span class="dt">Day</span><br />addAWeek d <span class="fu">=</span> addDays <span class="dv">7</span> d<br /><br /><span class="ot">interestingDates </span><span class="ot">::</span> [<span class="dt">Day</span>]<br />interestingDates <span class="fu">=</span> <span class="fu">...</span><br /><br /><span class="ot">anInterestingDate </span><span class="ot">::</span> <span class="dt">Maybe</span> <span class="dt">Day</span><br />anInterestingDate <span class="fu">=</span> firstOne' interestingDates<br /><br /><span class="ot">aWeekLater </span><span class="ot">::</span> <span class="dt">Maybe</span> <span class="dt">Day</span><br />aWeekLater <span class="fu">=</span> <span class="fu">fmap</span> addAWeek anInterestingDate</code></pre>
+<div class="section slide level1" id="power-lifting-fmap">
+<h1>Power lifting: <code>fmap</code></h1>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">addAWeek ::</span> <span class="dt">Day</span> <span class="ot">-&gt;</span> <span class="dt">Day</span>
+addAWeek d <span class="fu">=</span> addDays <span class="dv">7</span> d
+
+<span class="ot">interestingDates ::</span> [<span class="dt">Day</span>]
+interestingDates <span class="fu">=</span> <span class="fu">...</span>
+
+<span class="ot">anInterestingDate ::</span> <span class="dt">Maybe</span> <span class="dt">Day</span>
+anInterestingDate <span class="fu">=</span> firstOne&#39; interestingDates
+
+<span class="ot">aWeekLater ::</span> <span class="dt">Maybe</span> <span class="dt">Day</span>
+aWeekLater <span class="fu">=</span> <span class="fu">fmap</span> addAWeek anInterestingDate</code></pre>
 <p><em>(See the source for some intersting dates.)</em></p>
 </div>
-<div class="slide">
-<h1 id="thinking-like-a-haskeller">Thinking like a Haskeller</h1>
-<pre class="sourceCode"><code class="sourceCode haskell"><span class="ot">addAWeek </span><span class="ot">::</span> <span class="dt">Day</span> <span class="ot">-&gt;</span> <span class="dt">Day</span><br />addAWeek d <span class="fu">=</span> addDays <span class="dv">7</span> d<br /><br /><span class="ot">maybeAddAWeek </span><span class="ot">::</span> <span class="dt">Maybe</span> <span class="dt">Day</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">Day</span><br />maybeAddAWeek <span class="fu">=</span> <span class="fu">fmap</span> addAWeek<br /><br /><span class="ot">aWeekLater' </span><span class="ot">::</span> <span class="dt">Maybe</span> <span class="dt">Day</span><br />aWeekLater' <span class="fu">=</span> maybeAddAWeek anInterestingDate</code></pre>
+<div class="section slide level1" id="thinking-like-a-haskeller">
+<h1>Thinking like a Haskeller</h1>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">addAWeek ::</span> <span class="dt">Day</span> <span class="ot">-&gt;</span> <span class="dt">Day</span>
+addAWeek d <span class="fu">=</span> addDays <span class="dv">7</span> d
+
+<span class="ot">maybeAddAWeek ::</span> <span class="dt">Maybe</span> <span class="dt">Day</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">Day</span>
+maybeAddAWeek <span class="fu">=</span> <span class="fu">fmap</span> addAWeek
+
+<span class="ot">aWeekLater&#39; ::</span> <span class="dt">Maybe</span> <span class="dt">Day</span>
+aWeekLater&#39; <span class="fu">=</span> maybeAddAWeek anInterestingDate</code></pre>
 </div>
-<div class="slide">
-<h1 id="power-alternatives">Power alternatives: <code>&lt;|&gt;</code></h1>
-<pre class="sourceCode"><code class="sourceCode haskell"><span class="ot">pickShow </span><span class="ot">::</span> <span class="dt">Person</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">String</span><br />pickShow p <span class="fu">=</span><br />    favoriteShow (name p)<br />    <span class="fu">&lt;|&gt;</span> showWithName (name p)<br />    <span class="fu">&lt;|&gt;</span> showForYear (year p)</code></pre>
+<div class="section slide level1" id="power-alternatives">
+<h1>Power alternatives: <code>&lt;|&gt;</code></h1>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">pickShow ::</span> <span class="dt">Person</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">String</span>
+pickShow p <span class="fu">=</span>
+    favoriteShow (name p)
+    <span class="fu">&lt;|&gt;</span> showWithName (name p)
+    <span class="fu">&lt;|&gt;</span> showForYear (year p)</code></pre>
 <p>Given:</p>
-<pre class="sourceCode"><code class="sourceCode haskell"><span class="ot">favoriteShow </span><span class="ot">::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">String</span><br /><br /><span class="ot">showWithName </span><span class="ot">::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">String</span><br /><br /><span class="ot">showForYear </span><span class="ot">::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">String</span></code></pre>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">favoriteShow ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">String</span>
+
+<span class="ot">showWithName ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">String</span>
+
+<span class="ot">showForYear ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">String</span></code></pre>
 <p>Like short circuit due to lazy evaluation</p>
 </div>
-<div class="slide">
-<h1 id="power-injection">Power injection: <code>&gt;&gt;=</code></h1>
-<pre class="sourceCode"><code class="sourceCode haskell">getHeader <span class="st">&quot;Date&quot;</span> message <span class="fu">&gt;&gt;=</span> parseDate <span class="fu">&gt;&gt;=</span> mailboxForDate</code></pre>
+<div class="section slide level1" id="power-injection">
+<h1>Power injection: <code>&gt;&gt;=</code></h1>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">getHeader <span class="st">&quot;Date&quot;</span> message <span class="fu">&gt;&gt;=</span> parseDate <span class="fu">&gt;&gt;=</span> mailboxForDate</code></pre>
 <p>Given:</p>
-<pre class="sourceCode"><code class="sourceCode haskell"><span class="ot">getHeader </span><span class="ot">::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">MimeMessage</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">String</span><br /><br /><span class="ot">parseDate </span><span class="ot">::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">Date</span><br /><br /><span class="ot">mailboxForDate </span><span class="ot">::</span> <span class="dt">Date</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">Mailbox</span></code></pre>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">getHeader ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">MimeMessage</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">String</span>
+
+<span class="ot">parseDate ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">Date</span>
+
+<span class="ot">mailboxForDate ::</span> <span class="dt">Date</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">Mailbox</span></code></pre>
 <p><code>&gt;&gt;=</code> is actually pronounced &quot;bind&quot;</p>
 </div>
-<div class="slide">
-<h1 id="more-generic">More generic</h1>
-<pre class="sourceCode"><code class="sourceCode haskell"><span class="fu">fmap</span><span class="ot"> </span><span class="ot">::</span> <span class="kw">Functor</span> f <span class="ot">=&gt;</span> (a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> f a <span class="ot">-&gt;</span> f b<br /><br /><span class="ot">(&lt;|&gt;) </span><span class="ot">::</span> <span class="dt">Alternative</span> f <span class="ot">=&gt;</span> f a <span class="ot">-&gt;</span> f a <span class="ot">-&gt;</span> f a<br /><br /><span class="ot">(&gt;&gt;=) </span><span class="ot">::</span> <span class="kw">Monad</span> m <span class="ot">=&gt;</span> m a <span class="ot">-&gt;</span> (a <span class="ot">-&gt;</span> m b) <span class="ot">-&gt;</span> m b</code></pre>
+<div class="section slide level1" id="more-generic">
+<h1>More generic</h1>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="fu">fmap</span><span class="ot"> ::</span> <span class="kw">Functor</span> f <span class="ot">=&gt;</span> (a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> f a <span class="ot">-&gt;</span> f b
+
+<span class="ot">(&lt;|&gt;) ::</span> <span class="dt">Alternative</span> f <span class="ot">=&gt;</span> f a <span class="ot">-&gt;</span> f a <span class="ot">-&gt;</span> f a
+
+<span class="ot">(&gt;&gt;=) ::</span> <span class="kw">Monad</span> m <span class="ot">=&gt;</span> m a <span class="ot">-&gt;</span> (a <span class="ot">-&gt;</span> m b) <span class="ot">-&gt;</span> m b</code></pre>
 <p>Type classes and instances:</p>
 <pre><code>Functor       Maybe, [], (Either a), IO
 
 Alternative   Maybe, []
 
-Monad         Maybe, [], (Either a), IO
-</code></pre>
+Monad         Maybe, [], (Either a), IO</code></pre>
 </div>
-<div class="slide">
+<div class="section slide level1" id="section-4">
+<h1></h1>
 <p>(Time for just one more?)</p>
 </div>
-<div class="slide">
+<div class="section slide level1" id="section-5">
+<h1></h1>
 <p><em>Go!</em></p>
 </div>
-<div class="slide">
-<h1 id="types-you-dont-type">Types you don't type</h1>
-<pre class="sourceCode"><code class="sourceCode haskell"><span class="ot">runLengthEncode </span><span class="ot">::</span> <span class="kw">Eq</span> a <span class="ot">=&gt;</span> [a] <span class="ot">-&gt;</span> [(a, <span class="dt">Int</span>)]<br />runLengthEncode [] <span class="fu">=</span> []<br />runLengthEncode (x<span class="fu">:</span>xs) <span class="fu">=</span> nextGroup x <span class="dv">1</span> xs <br />  <span class="kw">where</span><br />    nextGroup e n [] <span class="fu">=</span> [(e, n)]<br />    nextGroup e n (y<span class="fu">:</span>ys)<br />      <span class="fu">|</span> e <span class="fu">==</span> y    <span class="fu">=</span>          nextGroup e (n <span class="fu">+</span> <span class="dv">1</span>) ys<br />      <span class="fu">|</span> <span class="fu">otherwise</span> <span class="fu">=</span> (e, n) <span class="fu">:</span> nextGroup y  <span class="dv">1</span>      ys</code></pre>
+<div class="section slide level1" id="types-you-dont-type">
+<h1>Types you don't type</h1>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">runLengthEncode ::</span> <span class="kw">Eq</span> a <span class="ot">=&gt;</span> [a] <span class="ot">-&gt;</span> [(a, <span class="dt">Int</span>)]
+runLengthEncode [] <span class="fu">=</span> []
+runLengthEncode (x<span class="fu">:</span>xs) <span class="fu">=</span> nextGroup x <span class="dv">1</span> xs
+  <span class="kw">where</span>
+    nextGroup e n [] <span class="fu">=</span> [(e, n)]
+    nextGroup e n (y<span class="fu">:</span>ys)
+      <span class="fu">|</span> e <span class="fu">==</span> y    <span class="fu">=</span>          nextGroup e (n <span class="fu">+</span> <span class="dv">1</span>) ys
+      <span class="fu">|</span> <span class="fu">otherwise</span> <span class="fu">=</span> (e, n) <span class="fu">:</span> nextGroup y  <span class="dv">1</span>      ys</code></pre>
 </div>
-<div class="slide">
-<h1 id="lets-try-that-in-c">Let's try that in C++</h1>
-<pre class="sourceCode"><code class="sourceCode cpp"><span class="kw">template</span>&lt;<span class="kw">typename</span> T&gt;<br />list&lt;pair&lt;T,<span class="dt">int</span>&gt; &gt; runLengthEncode(<span class="dt">const</span> list&lt;T&gt;&amp; as) {<br />    list&lt;pair&lt;T, <span class="dt">int</span>&gt; &gt; runs;<br />    <span class="kw">if</span> (!as.empty()) {<br />        <span class="kw">typename</span> list&lt;T&gt;::const_iterator it = as.begin();<br />        T elem = *it;<br />        <span class="dt">int</span> count = <span class="dv">0</span>;<br /><br />        <span class="kw">for</span> (; it != as.end(); it++) {<br />            <span class="kw">if</span> (elem != *it) {<br />                runs.push_back(make_pair(elem, count));<br />                elem = *it;<br />                count = <span class="dv">0</span>;<br />            }<br />            count += <span class="dv">1</span>;<br />        }<br />        runs.push_back(make_pair(elem, count));<br />    }<br />    <span class="kw">return</span> runs;<br />}</code></pre>
+<div class="section slide level1" id="lets-try-that-in-c">
+<h1>Let's try that in C++</h1>
+<pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">template</span>&lt;<span class="kw">typename</span> T&gt;
+list&lt;pair&lt;T,<span class="dt">int</span>&gt; &gt; runLengthEncode(<span class="dt">const</span> list&lt;T&gt;&amp; as) {
+    list&lt;pair&lt;T, <span class="dt">int</span>&gt; &gt; runs;
+    <span class="kw">if</span> (!as.empty()) {
+        <span class="kw">typename</span> list&lt;T&gt;::const_iterator it = as.begin();
+        T elem = *it;
+        <span class="dt">int</span> count = <span class="dv">0</span>;
+        
+        <span class="kw">for</span> (; it != as.end(); it++) {
+            <span class="kw">if</span> (elem != *it) {
+                runs.push_back(make_pair(elem, count));
+                elem = *it;
+                count = <span class="dv">0</span>;
+            }
+            count += <span class="dv">1</span>;
+        }
+        runs.push_back(make_pair(elem, count));
+    }
+    <span class="kw">return</span> runs;
+}</code></pre>
 </div>
-<div class="slide">
-<h1 id="quick-check">Quick Check</h1>
+<div class="section slide level1" id="quick-check">
+<h1>Quick Check</h1>
 <p>Just write some properties that should hold:</p>
-<pre class="sourceCode"><code class="sourceCode haskell"><span class="ot">rlePropLengthPreserved </span><span class="ot">::</span> [<span class="dt">Int</span>] <span class="ot">-&gt;</span> <span class="dt">Bool</span><br />rlePropLengthPreserved <span class="kw">as</span> <span class="fu">=</span> <span class="fu">length</span> <span class="kw">as</span> <span class="fu">==</span> (<span class="fu">sum</span> <span class="fu">$</span> <span class="fu">map</span> <span class="fu">snd</span> <span class="fu">$</span> runLengthEncode <span class="kw">as</span>)<br /><br /><span class="ot">rlePropDupesCollapsed </span><span class="ot">::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span><br />rlePropDupesCollapsed n<br />  <span class="fu">|</span> m <span class="fu">==</span> <span class="dv">0</span>    <span class="fu">=</span> runLengthEncode <span class="st">&quot;&quot;</span> <span class="fu">==</span> []<br />  <span class="fu">|</span> <span class="fu">otherwise</span> <span class="fu">=</span> runLengthEncode (<span class="fu">replicate</span> m <span class="ch">'x'</span>) <span class="fu">==</span> [(<span class="ch">'x'</span>, m)]<br />  <span class="kw">where</span> m <span class="fu">=</span> n <span class="ot">`mod`</span> <span class="dv">100</span><br /><br /><span class="ot">rlePropRoundTrip </span><span class="ot">::</span> [<span class="dt">Int</span>] <span class="ot">-&gt;</span> <span class="dt">Bool</span><br />rlePropRoundTrip ns <span class="fu">=</span> runLengthEncode xs <span class="fu">==</span> is<br />  <span class="kw">where</span> is <span class="fu">=</span> <span class="fu">zip</span> [<span class="ch">'a'</span><span class="fu">..</span>] <span class="fu">$</span> <span class="fu">map</span> (\n <span class="ot">-&gt;</span> n <span class="ot">`mod`</span> <span class="dv">100</span> <span class="fu">+</span> <span class="dv">1</span>) ns<br />        xs <span class="fu">=</span> <span class="fu">concatMap</span> (\(i,n) <span class="ot">-&gt;</span> <span class="fu">replicate</span> n i) is</code></pre>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">rlePropLengthPreserved ::</span> [<span class="dt">Int</span>] <span class="ot">-&gt;</span> <span class="dt">Bool</span>
+rlePropLengthPreserved <span class="kw">as</span> <span class="fu">=</span> <span class="fu">length</span> <span class="kw">as</span> <span class="fu">==</span> (<span class="fu">sum</span> <span class="fu">$</span> <span class="fu">map</span> <span class="fu">snd</span> <span class="fu">$</span> runLengthEncode <span class="kw">as</span>)
+
+<span class="ot">rlePropDupesCollapsed ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span>
+rlePropDupesCollapsed n
+  <span class="fu">|</span> m <span class="fu">==</span> <span class="dv">0</span>    <span class="fu">=</span> runLengthEncode <span class="st">&quot;&quot;</span> <span class="fu">==</span> []
+  <span class="fu">|</span> <span class="fu">otherwise</span> <span class="fu">=</span> runLengthEncode (<span class="fu">replicate</span> m <span class="ch">&#39;x&#39;</span>) <span class="fu">==</span> [(<span class="ch">&#39;x&#39;</span>, m)]
+  <span class="kw">where</span> m <span class="fu">=</span> n <span class="ot">`mod`</span> <span class="dv">100</span>
+
+<span class="ot">rlePropRoundTrip ::</span> [<span class="dt">Int</span>] <span class="ot">-&gt;</span> <span class="dt">Bool</span>
+rlePropRoundTrip ns <span class="fu">=</span> runLengthEncode xs <span class="fu">==</span> is
+  <span class="kw">where</span> is <span class="fu">=</span> <span class="fu">zip</span> [<span class="ch">&#39;a&#39;</span><span class="fu">..</span>] <span class="fu">$</span> <span class="fu">map</span> (\n <span class="ot">-&gt;</span> n <span class="ot">`mod`</span> <span class="dv">100</span> <span class="fu">+</span> <span class="dv">1</span>) ns
+        xs <span class="fu">=</span> <span class="fu">concatMap</span> (\(i,n) <span class="ot">-&gt;</span> <span class="fu">replicate</span> n i) is</code></pre>
 </div>
-<div class="slide">
-<h1 id="quick-check-em">Quick Check 'em:</h1>
-<pre class="sourceCode"><code class="sourceCode haskell"><span class="fu">&gt;</span> quickCheck rlePropRoundTrip <br /><span class="fu">+++</span> <span class="dt">OK</span>, passed <span class="dv">100</span> tests<span class="fu">.</span><br /><br /><span class="fu">&gt;</span> quickCheck rlePropDupesCollapsed <br /><span class="fu">+++</span> <span class="dt">OK</span>, passed <span class="dv">100</span> tests<span class="fu">.</span><br /><br /><span class="fu">&gt;</span> quickCheck rlePropRoundTrip <br /><span class="fu">+++</span> <span class="dt">OK</span>, passed <span class="dv">100</span> tests<span class="fu">.</span></code></pre>
+<div class="section slide level1" id="quick-check-em">
+<h1>Quick Check 'em:</h1>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="fu">&gt;</span> quickCheck rlePropRoundTrip
+<span class="fu">+++</span> <span class="dt">OK</span>, passed <span class="dv">100</span> tests<span class="fu">.</span>
+
+<span class="fu">&gt;</span> quickCheck rlePropDupesCollapsed
+<span class="fu">+++</span> <span class="dt">OK</span>, passed <span class="dv">100</span> tests<span class="fu">.</span>
+
+<span class="fu">&gt;</span> quickCheck rlePropRoundTrip
+<span class="fu">+++</span> <span class="dt">OK</span>, passed <span class="dv">100</span> tests<span class="fu">.</span></code></pre>
 </div>
-<div class="slide">
+<div class="section slide level1" id="section-6">
+<h1></h1>
 <p>Whew</p>
 </div>
-<div class="slide">
-<h1 id="oh-and-some-more-things">Oh, and some more things:</h1>
+<div class="section slide level1" id="oh-and-some-more-things">
+<h1>Oh, and some more things:</h1>
 <ul>
 <li>ghci</li>
 <li>cabal &amp; hackage</li>
@@ -353,8 +546,8 @@ Monad         Maybe, [], (Either a), IO
 <li><code>#haskell</code> on <code>irc.freenode.org</code></li>
 </ul>
 </div>
-<div class="slide">
-<h1 id="want-a-bigger-helping">Want a bigger helping?</h1>
+<div class="section slide level1" id="want-a-bigger-helping">
+<h1>Want a bigger helping?</h1>
 <ul>
 <li>Learn You a Haskell for Great Good!</li>
 </ul>
@@ -367,8 +560,8 @@ Monad         Maybe, [], (Either a), IO
 <li>Haskell.org</li>
 </ul>
 </div>
-<div class="slide">
-<h1 id="thanks">Thanks</h1>
+<div class="section slide level1" id="thanks">
+<h1>Thanks</h1>
 <p>Mark Lentczner</p>
 <p><code>mark﹫glyphic·com</code> &lt;|&gt; <code>mzero﹫google·com</code></p>
 <p><code>mzero</code> on IRC</p>

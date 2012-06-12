@@ -309,7 +309,7 @@ eachWordOnEachLine :: (String -> String) -> String -> String
 eachWordOnEachLine f = eachLine (eachWord f)
 
 yellEachWordOnEachLine :: String -> String
-yellEachWordOnEachLine = eachWord' yell
+yellEachWordOnEachLine = eachWordOnEachLine yell
 ~~~~
 
 Ah, got it:
@@ -644,7 +644,7 @@ Monad         Maybe, [], (Either a), IO
 ~~~~ {.haskell}
 runLengthEncode :: Eq a => [a] -> [(a, Int)]
 runLengthEncode [] = []
-runLengthEncode (x:xs) = nextGroup x 1 xs 
+runLengthEncode (x:xs) = nextGroup x 1 xs
   where
     nextGroup e n [] = [(e, n)]
     nextGroup e n (y:ys)
@@ -700,13 +700,13 @@ rlePropRoundTrip ns = runLengthEncode xs == is
 # Quick Check 'em:
 
 ~~~~ {.haskell}
-> quickCheck rlePropRoundTrip 
+> quickCheck rlePropRoundTrip
 +++ OK, passed 100 tests.
 
-> quickCheck rlePropDupesCollapsed 
+> quickCheck rlePropDupesCollapsed
 +++ OK, passed 100 tests.
 
-> quickCheck rlePropRoundTrip 
+> quickCheck rlePropRoundTrip
 +++ OK, passed 100 tests.
 ~~~~
 
