@@ -142,7 +142,6 @@ firstTwoLines' = byLines (take 2)
 # What if we want to modify the lines?
 
 ~~~~ {.haskell}
-indent :: String -> String
 indent s = "    " ++ s
 ~~~~
 
@@ -167,6 +166,44 @@ doesn't compile:
     In the first argument of `byLines', namely `indent'
     In the expression: byLines indent
 ~~~~
+
+# How did it work before?
+
+In this code
+
+~~~~ {.haskell}
+sortLines'     = byLines sort
+reverseLines'  = byLines reverse
+firstTwoLines' = byLines (take 2)
+~~~~
+
+We apply `byLines` to arguments with these types
+
+~~~~ {.haskell}
+sort     :: [String] -> [String]
+reverse  :: [String] -> [String]
+(take 2) :: [String] -> [String]
+~~~~
+
+_(Don't look too hard at that last one.)_
+
+# What do we have now?
+
+Type type of `indent` is
+
+~~~~ {.haskell}
+indent :: String -> String
+indent s = "    " ++ s
+~~~~
+
+and that isn't compatible with `byLines`
+
+~~~~ {.haskell}
+indentLines = byLines indent
+~~~~
+
+
+
 
 # `map` to the rescue:
 

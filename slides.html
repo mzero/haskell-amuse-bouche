@@ -118,7 +118,7 @@ one gets a rest
 </div>
 <div class="slide">
 <h1 id="what-if-we-want-to-modify-the-lines">What if we want to modify the lines?</h1>
-<pre class="sourceCode"><code class="sourceCode haskell"><span class="ot">indent </span><span class="ot">::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span><br />indent s <span class="fu">=</span> <span class="st">&quot;    &quot;</span> <span class="fu">++</span> s</code></pre>
+<pre class="sourceCode"><code class="sourceCode haskell">indent s <span class="fu">=</span> <span class="st">&quot;    &quot;</span> <span class="fu">++</span> s</code></pre>
 <p>and then, obviously:</p>
 <pre class="sourceCode"><code class="sourceCode haskell">indentLines <span class="fu">=</span> byLines indent</code></pre>
 </div>
@@ -132,6 +132,21 @@ one gets a rest
     In the first argument of `byLines', namely `indent'
     In the expression: byLines indent
 </code></pre>
+</div>
+<div class="slide">
+<h1 id="how-did-it-work-before">How did it work before?</h1>
+<p>In this code</p>
+<pre class="sourceCode"><code class="sourceCode haskell">sortLines'     <span class="fu">=</span> byLines <span class="fu">sort</span><br />reverseLines'  <span class="fu">=</span> byLines <span class="fu">reverse</span><br />firstTwoLines' <span class="fu">=</span> byLines (<span class="fu">take</span> <span class="dv">2</span>)</code></pre>
+<p>We apply <code>byLines</code> to arguments with these types</p>
+<pre class="sourceCode"><code class="sourceCode haskell"><span class="fu">sort</span><span class="ot">     </span><span class="ot">::</span> [<span class="dt">String</span>] <span class="ot">-&gt;</span> [<span class="dt">String</span>]<br /><span class="fu">reverse</span><span class="ot">  </span><span class="ot">::</span> [<span class="dt">String</span>] <span class="ot">-&gt;</span> [<span class="dt">String</span>]<br />(<span class="fu">take</span> <span class="dv">2</span>)<span class="ot"> </span><span class="ot">::</span> [<span class="dt">String</span>] <span class="ot">-&gt;</span> [<span class="dt">String</span>]</code></pre>
+<p><em>(Don't look too hard at that last one.)</em></p>
+</div>
+<div class="slide">
+<h1 id="what-do-we-have-now">What do we have now?</h1>
+<p>Type type of <code>indent</code> is</p>
+<pre class="sourceCode"><code class="sourceCode haskell"><span class="ot">indent </span><span class="ot">::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span><br />indent s <span class="fu">=</span> <span class="st">&quot;    &quot;</span> <span class="fu">++</span> s</code></pre>
+<p>and that isn't compatible with <code>byLines</code></p>
+<pre class="sourceCode"><code class="sourceCode haskell">indentLines <span class="fu">=</span> byLines indent</code></pre>
 </div>
 <div class="slide">
 <h1 id="map-to-the-rescue"><code>map</code> to the rescue:</h1>
