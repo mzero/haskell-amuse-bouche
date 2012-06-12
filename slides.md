@@ -187,6 +187,8 @@ reverse  :: [String] -> [String]
 
 _(Don't look too hard at that last one.)_
 
+_(This slide isn't in the video.)_
+
 # What do we have now?
 
 Type type of `indent` is
@@ -202,6 +204,7 @@ and that isn't compatible with `byLines`
 indentLines = byLines indent
 ~~~~
 
+_(This slide isn't in the video.)_
 
 
 
@@ -319,6 +322,8 @@ OCCASIONAL!!! CLOUDS!!!
 ONE!!! GETS!!! A!!! REST!!!
 FROM!!! MOON-VIEWING!!!
 ~~~~
+
+_(This slide is fixed from the one in the video.)_
 
 # What bus hit us?
 

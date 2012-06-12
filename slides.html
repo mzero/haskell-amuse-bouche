@@ -149,6 +149,7 @@ firstTwoLines&#39; <span class="fu">=</span> byLines (<span class="fu">take</spa
 <span class="fu">reverse</span><span class="ot">  ::</span> [<span class="dt">String</span>] <span class="ot">-&gt;</span> [<span class="dt">String</span>]
 (<span class="fu">take</span> <span class="dv">2</span>)<span class="ot"> ::</span> [<span class="dt">String</span>] <span class="ot">-&gt;</span> [<span class="dt">String</span>]</code></pre>
 <p><em>(Don't look too hard at that last one.)</em></p>
+<p><em>(This slide isn't in the video.)</em></p>
 </div>
 <div class="section slide level1" id="what-do-we-have-now">
 <h1>What do we have now?</h1>
@@ -157,6 +158,7 @@ firstTwoLines&#39; <span class="fu">=</span> byLines (<span class="fu">take</spa
 indent s <span class="fu">=</span> <span class="st">&quot;    &quot;</span> <span class="fu">++</span> s</code></pre>
 <p>and that isn't compatible with <code>byLines</code></p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell">indentLines <span class="fu">=</span> byLines indent</code></pre>
+<p><em>(This slide isn't in the video.)</em></p>
 </div>
 <div class="section slide level1" id="map-to-the-rescue">
 <h1><code>map</code> to the rescue:</h1>
@@ -230,6 +232,7 @@ yellEachWordOnEachLine <span class="fu">=</span> eachWordOnEachLine yell</code><
 <pre><code>OCCASIONAL!!! CLOUDS!!!
 ONE!!! GETS!!! A!!! REST!!!
 FROM!!! MOON-VIEWING!!!</code></pre>
+<p><em>(This slide is fixed from the one in the video.)</em></p>
 </div>
 <div class="section slide level1" id="what-bus-hit-us">
 <h1>What bus hit us?</h1>
@@ -490,7 +493,7 @@ list&lt;pair&lt;T,<span class="dt">int</span>&gt; &gt; runLengthEncode(<span cla
         <span class="kw">typename</span> list&lt;T&gt;::const_iterator it = as.begin();
         T elem = *it;
         <span class="dt">int</span> count = <span class="dv">0</span>;
-        
+
         <span class="kw">for</span> (; it != as.end(); it++) {
             <span class="kw">if</span> (elem != *it) {
                 runs.push_back(make_pair(elem, count));
