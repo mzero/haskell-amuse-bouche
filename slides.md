@@ -40,7 +40,7 @@
 
 The slides and code are here:
 
-`https://github.com/mtnviewmark/haskell-amuse-bouche`
+`https://github.com/mzero/haskell-amuse-bouche`
 
 
 # Something Familiar
